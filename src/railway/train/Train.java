@@ -2,6 +2,7 @@ package railway.train;
 
 import railway.station.Route;
 import railway.station.Station;
+import railway.train.wagon.Wagon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,9 @@ public class Train {
         this.currentStation = currentStation;
         this.route = route;
         this.wagons = new ArrayList<>();
+
     }
+
 
     @Override
     public String toString() {
@@ -34,6 +37,14 @@ public class Train {
                 ", route='" + route + '\'' +
                 ", wagons='" + wagons + '\'' +
                 '}';
+    }
+
+    public void showInfo() {
+        System.out.println("Train ID: " + trainId);
+        System.out.println("Train Name: " + name);
+        System.out.println("Locomotive: " + locomotive.getName());
+        System.out.println("Current Station: " + currentStation.getStationName());
+        System.out.println("Number of wagons: " + wagons.size());
     }
 
     public int getTrainId() {
@@ -93,14 +104,6 @@ public class Train {
 
     public void showCurrentStation() {
         System.out.println("Train " + name + " is currently at " + currentStation.getStationName());
-    }
-
-    public void showInfo() {
-        System.out.println("Train ID: " + trainId);
-        System.out.println("Train Name: " + name);
-        System.out.println("Locomotive: " + locomotive.getName());
-        System.out.println("Current Station: " + currentStation.getStationName());
-        System.out.println("Number of wagons: " + wagons.size());
     }
 
     public void showWagons() {

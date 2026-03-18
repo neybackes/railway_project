@@ -1,8 +1,8 @@
-package railway.passenger;
+package railway.passenger.person;
 
 import railway.station.Station;
 
-public class Passenger {
+public final class Passenger extends Person {
 
     private String name;
     private Station destination;
@@ -19,7 +19,11 @@ public class Passenger {
                 ", destination='" + destination+ '\'' +
                 '}';
     }
-
+    @Override
+    public void showInfo() {
+        System.out.println("Passenger: " + name);
+        System.out.println("Destination: " + destination.getStationName());
+    }
     public String getName() {
         return name;
     }
@@ -30,10 +34,5 @@ public class Passenger {
 
     public Station getDestination() {
         return destination;
-    }
-
-    public void showInfo() {
-        System.out.println("Passenger: " + name);
-        System.out.println("Destination: " + destination.getStationName());
     }
 }

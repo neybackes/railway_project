@@ -1,4 +1,4 @@
-package railway.train;
+package railway.train.wagon;
 
 public abstract class Wagon {
 
@@ -17,6 +17,8 @@ public abstract class Wagon {
                 ", capacity=" + capacity +
                 '}';
     }
+
+    public abstract void showInfo();
 
 
     public int getWagonId() {
@@ -46,5 +48,5 @@ public abstract class Wagon {
 
 
 
-    public abstract void showInfo();
+
 }

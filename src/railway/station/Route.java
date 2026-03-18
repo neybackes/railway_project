@@ -19,6 +19,12 @@ public class Route {
                 ", distance='" + distance + '\'' +
                 '}';
     }
+    public void showInfo() {
+        System.out.println("Route:");
+        System.out.println("Origin: " + origin.getStationName());
+        System.out.println("Destination: " + destination.getStationName());
+        System.out.println("Distance: " + distance + " km");
+    }
     public String getOrigin() {
         return origin.getStationName();
     }
@@ -35,12 +41,6 @@ public class Route {
         this.distance = distance;
     }
 
-    public void showInfo() {
-        System.out.println("Route:");
-        System.out.println("Origin: " + origin.getStationName());
-        System.out.println("Destination: " + destination.getStationName());
-        System.out.println("Distance: " + distance + " km");
-    }
 
     public boolean isStationOnRoute(Station station) {
         return station.equals(origin) || station.equals(destination);

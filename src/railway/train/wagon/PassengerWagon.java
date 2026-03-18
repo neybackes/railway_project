@@ -1,6 +1,6 @@
-package railway.train;
+package railway.train.wagon;
 
-import railway.passenger.Passenger;
+import railway.passenger.person.Passenger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.List;
 public final class PassengerWagon extends Wagon {
 
     private final List<Passenger> passengers;
+
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);
@@ -61,6 +62,7 @@ public final class PassengerWagon extends Wagon {
             System.out.println("- " + passenger.getName());
         }
     }
+
 
 
 

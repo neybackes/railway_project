@@ -1,13 +1,13 @@
-package railway.train;
+package railway.train.wagon;
 
-import railway.cargo.Cargo;
+import railway.cargo.GeneralCargo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class CargoWagon extends Wagon {
 
-    private final List<Cargo> cargoList;
+    private final List<GeneralCargo> cargoList;
     private double currentLoad;
 
     public CargoWagon(int wagonId, double capacity) {
@@ -32,7 +32,7 @@ public final class CargoWagon extends Wagon {
         System.out.println("Cargo items: " + cargoList.size());
     }
 
-    public void loadCargo(Cargo cargo) {
+    public void loadCargo(GeneralCargo cargo) {
 
         if (currentLoad + cargo.getWeight() > capacity) {
             System.out.println("Cannot load cargo. Wagon " + wagonId + " exceeds capacity.");
@@ -45,7 +45,7 @@ public final class CargoWagon extends Wagon {
         System.out.println("Cargo loaded into wagon " + wagonId);
     }
 
-    public void unloadCargo(Cargo cargo) {
+    public void unloadCargo(GeneralCargo cargo) {
 
         if (cargoList.remove(cargo)) {
             currentLoad -= cargo.getWeight();
@@ -62,7 +62,7 @@ public final class CargoWagon extends Wagon {
             return;
         }
 
-        for (Cargo cargo : cargoList) {
+        for (GeneralCargo cargo : cargoList) {
             System.out.println("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
         }
     }
@@ -72,5 +72,6 @@ public final class CargoWagon extends Wagon {
     public void setCurrentLoad(double currentLoad){
         this.currentLoad = currentLoad;
     }
+
 
 }

@@ -1,9 +1,10 @@
-package railway.passenger;
+package railway.passenger.document;
 
+import railway.passenger.person.Passenger;
 import railway.station.Station;
 import railway.train.Train;
 
-public class Ticket {
+public class Ticket extends Document {
 
     private String ticketId;
     private Passenger passenger;
@@ -11,6 +12,8 @@ public class Ticket {
     private Station destination;
     private double price;
     private boolean used;
+
+
 
     public Ticket(String ticketId, Passenger passenger, Station origin, Station destination, double price) {
         this.ticketId = ticketId;
@@ -32,11 +35,26 @@ public class Ticket {
                 ", used='" + used + '\'' +
                 '}';
     }
-
-    public Passenger getPassenger() {
-        return passenger;
+    @Override
+    public void showInfo() {
+        System.out.println("Ticket ID: " + ticketId);
+        System.out.println("Passenger: " + passenger.getName());
+        System.out.println("Origin: " + origin.getStationName());
+        System.out.println("Destination: " + destination.getStationName());
+        System.out.println("Price: $" + price);
+        System.out.println("Used: " + used);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ticket ticket)) return false;
+        return ticketId.equals(ticket.ticketId);
+    }
+    @Override
+    public int hashCode() {
+        return ticketId.hashCode();
+    }
     public String getTicketId() {
         return ticketId;
     }
@@ -77,12 +95,5 @@ public class Ticket {
         used = true;
     }
 
-    public void showInfo() {
-        System.out.println("Ticket ID: " + ticketId);
-        System.out.println("Passenger: " + passenger.getName());
-        System.out.println("Origin: " + origin.getStationName());
-        System.out.println("Destination: " + destination.getStationName());
-        System.out.println("Price: $" + price);
-        System.out.println("Used: " + used);
-    }
+
 }

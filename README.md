@@ -16,16 +16,21 @@ Simple Java study project modeling a railway system.
 
 ### OOP. Inheritance. Polymorphism
 - Refactor your projects with 5 Abstract classes(make hierarchy).
+  - Four packages were refactored using abstract classes. 
+    These abstract classes contain both abstract methods and shared logic, serving as base classes for the concrete classes. 
+    The packages are: cargo, passenger (with the subpackages person and ticket), system, and train (with the subpackage wagon). 
 - add toString() at least 5 classes(that for example you're already using for printing info)
   - All classes, including one abstract class, implement the toString() method.
 - equals() and hashCode() - 3 times randomly for practice or for classes that you are using as well
+  - equals() and hashCode() in three different classes to compare objects based on their attributes instead of memory reference. 
+  - Simple implementation with a HashSet to prevent duplicate entries and understand the application.
 - Use polymorphism at least 1 time in your project
   * Override
     - The abstract class Wagon defines the method showInfo().
     - The subclasses PassengerWagon and CargoWagon override this method.
     - The toString() method is also overridden across multiple classes.
   * Overloading
-    - Method overloading in the Wagon class by implementing setCapacity() with different parameter types (int and double).
+    - Method overloading in the Wagon class by implementing setCapacity() - Class Wagon with different parameter types (int and double).
 
 Code layout:
 - `Main.java`: entry point.
