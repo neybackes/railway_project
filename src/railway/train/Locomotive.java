@@ -10,6 +10,14 @@ public class Locomotive {
         this.maxSpeed = maxSpeed;
     }
 
+    @Override
+    public String toString() {
+        return "Locomotive{" +
+                "name='" + name + '\'' +
+                ", capacity='" + maxSpeed + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

@@ -12,6 +12,14 @@ public class Passenger {
         this.destination = destination;
     }
 
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "name='" + name + '\'' +
+                ", destination='" + destination+ '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

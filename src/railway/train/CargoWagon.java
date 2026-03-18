@@ -5,15 +5,31 @@ import railway.cargo.Cargo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CargoWagon extends Wagon {
+public final class CargoWagon extends Wagon {
 
-    private List<Cargo> cargoList;
+    private final List<Cargo> cargoList;
     private double currentLoad;
 
     public CargoWagon(int wagonId, double capacity) {
         super(wagonId, capacity);
         this.cargoList = new ArrayList<>();
         this.currentLoad = 0;
+    }
+
+    @Override
+    public String toString() {
+        return "CargoWagon{" +
+                super.toString() +
+                ", cargoList='" + cargoList + '\'' +
+                '}';
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Cargo Wagon ID: " + wagonId);
+        System.out.println("Capacity: " + capacity + " tons");
+        System.out.println("Current Load: " + currentLoad + " tons");
+        System.out.println("Cargo items: " + cargoList.size());
     }
 
     public void loadCargo(Cargo cargo) {
@@ -57,10 +73,4 @@ public class CargoWagon extends Wagon {
         this.currentLoad = currentLoad;
     }
 
-    public void showInfo() {
-        System.out.println("Cargo Wagon ID: " + wagonId);
-        System.out.println("Capacity: " + capacity + " tons");
-        System.out.println("Current Load: " + currentLoad + " tons");
-        System.out.println("Cargo items: " + cargoList.size());
-    }
 }

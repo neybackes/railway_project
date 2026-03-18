@@ -24,11 +24,24 @@ public class Train {
         this.wagons = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "Train{" +
+                "trainId='" + trainId + '\'' +
+                ", name='" + name + '\'' +
+                ", locomotive='" + locomotive + '\'' +
+                ", currentStation='" + currentStation + '\'' +
+                ", route='" + route + '\'' +
+                ", wagons='" + wagons + '\'' +
+                '}';
+    }
+
     public int getTrainId() {
         return trainId;
     }
 
     public void setTrainId(int trainId) {
+
         this.trainId = trainId;
     }
 

@@ -18,6 +18,15 @@ public class RailwaySystem {
         this.trains = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "RailwaySystem{" +
+                "name='" + name + '\'' +
+                ", stations=" + stations +
+                ", trains=" + trains +
+                '}';
+    }
+
     public String getSystemName() {
         return name;
     }
@@ -29,6 +38,7 @@ public class RailwaySystem {
     public List<Station> getStations() {
         return stations;
     }
+
 
     public List<Train> getTrains() {
         return trains;

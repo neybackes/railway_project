@@ -11,7 +11,14 @@ public class Route {
         this.destination = destination;
         this.distance = distance;
     }
-
+    @Override
+    public String toString() {
+        return "Route{" +
+                "origin ='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", distance='" + distance + '\'' +
+                '}';
+    }
     public String getOrigin() {
         return origin.getStationName();
     }

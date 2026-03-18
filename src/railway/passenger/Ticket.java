@@ -21,6 +21,18 @@ public class Ticket {
         this.used = false;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId='" + ticketId + '\'' +
+                ", passenger='" + passenger+ '\'' +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", price='" + price + '\'' +
+                ", used='" + used + '\'' +
+                '}';
+    }
+
     public Passenger getPassenger() {
         return passenger;
     }

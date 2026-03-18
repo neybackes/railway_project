@@ -10,6 +10,14 @@ public class Station {
         this.city = city;
     }
 
+    @Override
+    public String toString() {
+        return "Station{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
     public String getStationName() {
         return name;
     }

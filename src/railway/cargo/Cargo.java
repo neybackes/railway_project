@@ -13,6 +13,16 @@ public class Cargo {
         this.weight = weight;
         this.destination = destination;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "description='" + description + '\'' +
+                ", weight='" + weight + '\'' +
+                ", destination='" + destination+ '\'' +
+                '}';
+    }
+
     public String getDescription() {
         return description;
     }
