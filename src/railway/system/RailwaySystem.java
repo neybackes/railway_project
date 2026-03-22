@@ -2,9 +2,17 @@ package railway.system;
 
 import railway.station.Station;
 
-public abstract class RailwaySystem {
+public abstract class RailwaySystem implements RailwaySystemContract {
 
     private String name;
+
+    static {
+        System.out.println("RailwaySystem Class Initiated");
+    }
+
+    {
+        System.out.println("New RailwayManager instance");
+    }
 
     @Override
     public abstract String toString();

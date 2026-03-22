@@ -31,6 +31,13 @@ Simple Java study project modeling a railway system.
     - The toString() method is also overridden across multiple classes.
   * Overloading
     - Method overloading in the Wagon class by implementing setCapacity() - Class Wagon with different parameter types (int and double).
+      
+
+### Interfaces, static, final
+- Add 5 interfaces to your project and use them in terms of your application workflow (add new functionality, refactor old one as you wish)
+    - Five interfaces (Cargo, Wagon, Person, Document, RailwaySystem).
+    - static/instance init blocks to show class loading and object instantiation
+    - static validation helper used during system creation.
 
 Code layout:
 - `Main.java`: entry point.
