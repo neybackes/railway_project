@@ -10,6 +10,19 @@ public class Station {
         this.city = city;
     }
 
+    @Override
+    public String toString() {
+        return "Station{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+    public void showInfo() {
+        System.out.println("Station: " + name);
+        System.out.println("City: " + city);
+    }
+
     public String getStationName() {
         return name;
     }
@@ -26,8 +39,4 @@ public class Station {
         this.city = city;
     }
 
-    public void showInfo() {
-        System.out.println("Station: " + name);
-        System.out.println("City: " + city);
-    }
 }

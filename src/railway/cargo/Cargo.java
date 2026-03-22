@@ -2,41 +2,26 @@ package railway.cargo;
 
 import railway.station.Station;
 
-public class Cargo {
+public abstract class Cargo {
 
-    private String description;
-    private double weight;
-    private Station destination;
+    protected String description;
+    protected double weight;
+    protected Station destination;
 
-    public Cargo(String description, double weight, Station destination) {
-        this.description = description;
-        this.weight = weight;
-        this.destination = destination;
-    }
-    public String getDescription() {
-        return description;
-    }
+    public abstract void showInfo();
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @Override
+    public abstract String toString();
 
-    public double getWeight() {
-        return weight;
-    }
+    public abstract String getDescription();
 
-    public void setWeight(double weight){
-        this.weight = weight;
-    }
+    public abstract void setDescription(String description);
 
-    public Station getDestination() {
-        return destination;
-    }
+    public abstract double getWeight();
 
+    public abstract void setWeight(double weight);
 
-    public void showInfo() {
-        System.out.println("Cargo: " + description);
-        System.out.println("Weight: " + weight + " tons");
-        System.out.println("Destination: " + destination.getStationName());
-    }
+    public abstract Station getDestination();
+
+    public abstract void setDestination(Station destination);
 }
