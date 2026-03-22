@@ -1,6 +1,6 @@
 package railway.train.wagon;
 
-public abstract class Wagon {
+public abstract class Wagon implements WagonContract {
 
     protected int wagonId;
     protected double capacity;
