@@ -1,17 +1,32 @@
-package railway.train;
-
-import railway.passenger.Passenger;
+package railway.train.wagon;
 
 import java.util.ArrayList;
 import java.util.List;
+import railway.passenger.person.Passenger;
 
-public class PassengerWagon extends Wagon {
+public final class PassengerWagon extends Wagon {
 
-    private List<Passenger> passengers;
+    private final List<Passenger> passengers;
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);
         this.passengers = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "PassengerWagon{" +
+                ", wagonId='" + wagonId + '\'' +
+                ", capacity='" + getSeats() + '\'' +
+                ", cargoList='" + passengers + '\'' +
+                '}';
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Passenger Wagon ID: " + wagonId);
+        System.out.println("Capacity: " + capacity);
+        System.out.println("Passengers onboard: " + passengers.size());
     }
 
     public void boardPassenger(Passenger passenger) {
@@ -46,10 +61,4 @@ public class PassengerWagon extends Wagon {
         }
     }
 
-
-    public void showInfo() {
-        System.out.println("Passenger Wagon ID: " + wagonId);
-        System.out.println("Capacity: " + capacity);
-        System.out.println("Passengers onboard: " + passengers.size());
-    }
 }

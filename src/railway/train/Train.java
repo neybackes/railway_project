@@ -1,10 +1,10 @@
 package railway.train;
 
-import railway.station.Route;
-import railway.station.Station;
-
 import java.util.ArrayList;
 import java.util.List;
+import railway.station.Route;
+import railway.station.Station;
+import railway.train.wagon.Wagon;
 
 public class Train {
 
@@ -24,6 +24,26 @@ public class Train {
         this.wagons = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "Train{" +
+                "trainId='" + trainId + '\'' +
+                ", name='" + name + '\'' +
+                ", locomotive='" + locomotive + '\'' +
+                ", currentStation='" + currentStation + '\'' +
+                ", route='" + route + '\'' +
+                ", wagons='" + wagons + '\'' +
+                '}';
+    }
+
+    public void showInfo() {
+        System.out.println("Train ID: " + trainId);
+        System.out.println("Train Name: " + name);
+        System.out.println("Locomotive: " + locomotive.getName());
+        System.out.println("Current Station: " + currentStation.getStationName());
+        System.out.println("Number of wagons: " + wagons.size());
+    }
+
     public int getTrainId() {
         return trainId;
     }
@@ -36,7 +56,7 @@ public class Train {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -80,14 +100,6 @@ public class Train {
 
     public void showCurrentStation() {
         System.out.println("Train " + name + " is currently at " + currentStation.getStationName());
-    }
-
-    public void showInfo() {
-        System.out.println("Train ID: " + trainId);
-        System.out.println("Train Name: " + name);
-        System.out.println("Locomotive: " + locomotive.getName());
-        System.out.println("Current Station: " + currentStation.getStationName());
-        System.out.println("Number of wagons: " + wagons.size());
     }
 
     public void showWagons() {

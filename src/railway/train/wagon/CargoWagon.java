@@ -1,13 +1,12 @@
-package railway.train;
-
-import railway.cargo.Cargo;
+package railway.train.wagon;
 
 import java.util.ArrayList;
 import java.util.List;
+import railway.cargo.GeneralCargo;
 
-public class CargoWagon extends Wagon {
+public final class CargoWagon extends Wagon {
 
-    private List<Cargo> cargoList;
+    private final List<GeneralCargo> cargoList;
     private double currentLoad;
 
     public CargoWagon(int wagonId, double capacity) {
@@ -16,7 +15,23 @@ public class CargoWagon extends Wagon {
         this.currentLoad = 0;
     }
 
-    public void loadCargo(Cargo cargo) {
+    @Override
+    public String toString() {
+        return "CargoWagon{" +
+                super.toString() +
+                ", cargoList='" + cargoList + '\'' +
+                '}';
+    }
+
+    @Override
+    public void showInfo() {
+        System.out.println("Cargo Wagon ID: " + wagonId);
+        System.out.println("Capacity: " + capacity + " tons");
+        System.out.println("Current Load: " + currentLoad + " tons");
+        System.out.println("Cargo items: " + cargoList.size());
+    }
+
+    public void loadCargo(GeneralCargo cargo) {
 
         if (currentLoad + cargo.getWeight() > capacity) {
             System.out.println("Cannot load cargo. Wagon " + wagonId + " exceeds capacity.");
@@ -29,7 +44,7 @@ public class CargoWagon extends Wagon {
         System.out.println("Cargo loaded into wagon " + wagonId);
     }
 
-    public void unloadCargo(Cargo cargo) {
+    public void unloadCargo(GeneralCargo cargo) {
 
         if (cargoList.remove(cargo)) {
             currentLoad -= cargo.getWeight();
@@ -46,21 +61,17 @@ public class CargoWagon extends Wagon {
             return;
         }
 
-        for (Cargo cargo : cargoList) {
+        for (GeneralCargo cargo : cargoList) {
             System.out.println("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
         }
     }
-    public double getCurrentLoad(){
+
+    public double getCurrentLoad() {
         return currentLoad;
     }
-    public void setCurrentLoad(double currentLoad){
+
+    public void setCurrentLoad(double currentLoad) {
         this.currentLoad = currentLoad;
     }
 
-    public void showInfo() {
-        System.out.println("Cargo Wagon ID: " + wagonId);
-        System.out.println("Capacity: " + capacity + " tons");
-        System.out.println("Current Load: " + currentLoad + " tons");
-        System.out.println("Cargo items: " + cargoList.size());
-    }
 }

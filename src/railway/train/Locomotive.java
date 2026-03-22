@@ -10,6 +10,19 @@ public class Locomotive {
         this.maxSpeed = maxSpeed;
     }
 
+    @Override
+    public String toString() {
+        return "Locomotive{" +
+                "name='" + name + '\'' +
+                ", capacity='" + maxSpeed + '\'' +
+                '}';
+    }
+
+    public void showInfo() {
+        System.out.println("Locomotive: " + name);
+        System.out.println("Max speed: " + maxSpeed + " km/h");
+    }
+
     public String getName() {
         return name;
     }
@@ -26,8 +39,4 @@ public class Locomotive {
         this.maxSpeed = maxSpeed;
     }
 
-    public void showInfo() {
-        System.out.println("Locomotive: " + name);
-        System.out.println("Max speed: " + maxSpeed + " km/h");
-    }
 }
