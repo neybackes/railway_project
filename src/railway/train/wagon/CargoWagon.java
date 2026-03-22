@@ -1,9 +1,8 @@
 package railway.train.wagon;
 
-import railway.cargo.GeneralCargo;
-
 import java.util.ArrayList;
 import java.util.List;
+import railway.cargo.GeneralCargo;
 
 public final class CargoWagon extends Wagon {
 
@@ -66,12 +65,13 @@ public final class CargoWagon extends Wagon {
             System.out.println("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
         }
     }
-    public double getCurrentLoad(){
+
+    public double getCurrentLoad() {
         return currentLoad;
     }
-    public void setCurrentLoad(double currentLoad){
+
+    public void setCurrentLoad(double currentLoad) {
         this.currentLoad = currentLoad;
     }
-
 
 }

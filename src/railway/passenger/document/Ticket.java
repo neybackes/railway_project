@@ -13,8 +13,6 @@ public class Ticket extends Document {
     private double price;
     private boolean used;
 
-
-
     public Ticket(String ticketId, Passenger passenger, Station origin, Station destination, double price) {
         this.ticketId = ticketId;
         this.passenger = passenger;
@@ -28,13 +26,14 @@ public class Ticket extends Document {
     public String toString() {
         return "Ticket{" +
                 "ticketId='" + ticketId + '\'' +
-                ", passenger='" + passenger+ '\'' +
+                ", passenger='" + passenger + '\'' +
                 ", origin='" + origin + '\'' +
                 ", destination='" + destination + '\'' +
                 ", price='" + price + '\'' +
                 ", used='" + used + '\'' +
                 '}';
     }
+
     @Override
     public void showInfo() {
         System.out.println("Ticket ID: " + ticketId);
@@ -51,28 +50,33 @@ public class Ticket extends Document {
         if (!(o instanceof Ticket ticket)) return false;
         return ticketId.equals(ticket.ticketId);
     }
+
     @Override
     public int hashCode() {
         return ticketId.hashCode();
     }
+
     public String getTicketId() {
         return ticketId;
     }
-    public void setTicketId(String ticketId){
+
+    public void setTicketId(String ticketId) {
         this.ticketId = ticketId;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
-    public boolean getTicketStatus(){
+
+    public boolean getTicketStatus() {
         return used;
     }
-    public void setTicketStatus(boolean used){
+
+    public void setTicketStatus(boolean used) {
         this.used = used;
     }
 
-    public void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -94,6 +98,5 @@ public class Ticket extends Document {
     public void markUsed() {
         used = true;
     }
-
 
 }

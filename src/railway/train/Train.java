@@ -1,11 +1,10 @@
 package railway.train;
 
+import java.util.ArrayList;
+import java.util.List;
 import railway.station.Route;
 import railway.station.Station;
 import railway.train.wagon.Wagon;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Train {
 
@@ -23,9 +22,7 @@ public class Train {
         this.currentStation = currentStation;
         this.route = route;
         this.wagons = new ArrayList<>();
-
     }
-
 
     @Override
     public String toString() {
@@ -52,7 +49,6 @@ public class Train {
     }
 
     public void setTrainId(int trainId) {
-
         this.trainId = trainId;
     }
 
@@ -60,7 +56,7 @@ public class Train {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 

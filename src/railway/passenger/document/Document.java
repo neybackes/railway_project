@@ -13,10 +13,6 @@ public abstract class Document {
     private double price;
     private boolean used;
 
-    public Document() {
-
-    }
-
     @Override
     public abstract String toString();
 

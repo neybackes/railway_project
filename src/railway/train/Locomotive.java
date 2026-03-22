@@ -17,6 +17,7 @@ public class Locomotive {
                 ", capacity='" + maxSpeed + '\'' +
                 '}';
     }
+
     public void showInfo() {
         System.out.println("Locomotive: " + name);
         System.out.println("Max speed: " + maxSpeed + " km/h");

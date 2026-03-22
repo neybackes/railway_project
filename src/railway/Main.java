@@ -1,18 +1,17 @@
 package railway;
 
-import railway.system.RailwayManager;
-import railway.station.Station;
-import railway.station.Route;
-import railway.train.Train;
-import railway.train.Locomotive;
-import railway.train.wagon.PassengerWagon;
-import railway.train.wagon.CargoWagon;
-import railway.passenger.person.Passenger;
-import railway.passenger.document.Ticket;
-import railway.cargo.GeneralCargo;
-
 import java.util.HashSet;
 import java.util.Set;
+import railway.cargo.GeneralCargo;
+import railway.passenger.document.Ticket;
+import railway.passenger.person.Passenger;
+import railway.station.Route;
+import railway.station.Station;
+import railway.system.RailwayManager;
+import railway.train.Locomotive;
+import railway.train.Train;
+import railway.train.wagon.CargoWagon;
+import railway.train.wagon.PassengerWagon;
 
 public class Main {
 
@@ -50,8 +49,6 @@ public class Main {
 
         System.out.println("====================\n");
 
-
-
         System.out.println("========== HASHCODE TEST ==========");
         System.out.println("Railway hashCode: " + railway.hashCode());
         System.out.println("Train hashCode: " + train1.hashCode());
@@ -69,7 +66,6 @@ public class Main {
         System.out.println("Result: " + railway.equals(railway2));
 
         System.out.println("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
-        // not quite sure how to implement a validation on class. Passenger Wagon?
 
         Set<Ticket> tickets = new HashSet<>();
 

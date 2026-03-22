@@ -1,10 +1,9 @@
 package railway.system;
 
-import railway.station.Station;
-import railway.train.Train;
-
 import java.util.ArrayList;
 import java.util.List;
+import railway.station.Station;
+import railway.train.Train;
 
 public final class RailwayManager extends RailwaySystem {
 
@@ -31,31 +30,30 @@ public final class RailwayManager extends RailwaySystem {
     public boolean equals(Object compare) {
         //explicit casting -- needs more research
         RailwayManager compareCast = (RailwayManager) compare;
-        if (this.name.equals(compareCast.name)){
-            System.out.println("Atribute " + name +  " is equals.");
+        if (this.name.equals(compareCast.name)) {
+            System.out.println("Atribute " + name + " is equals.");
             return true;
-        }else{
+        } else {
             System.out.println("Attribute " + name + " is not equal.");
             return false;
         }
     }
+
     public int hashCode() {
         return name.hashCode();
     }
-
 
     public String getSystemName() {
         return name;
     }
 
-    public void setSystemName(String name){
+    public void setSystemName(String name) {
         this.name = name;
     }
 
     public List<Station> getStations() {
         return stations;
     }
-
 
     public List<Train> getTrains() {
         return trains;
@@ -64,7 +62,6 @@ public final class RailwayManager extends RailwaySystem {
     public void addStation(Station station) {
         stations.add(station);
         System.out.println("Station " + station.getStationName() + " added to railway system.");
-
     }
 
     public void addTrain(Train train) {
@@ -75,7 +72,6 @@ public final class RailwayManager extends RailwaySystem {
     public void showStations() {
         if (stations.isEmpty()) {
             System.out.println("No stations registered.");
-
         }
 
         System.out.println("Stations in " + name + ":");

@@ -16,19 +16,21 @@ public final class Passenger extends Person {
     public String toString() {
         return "Passenger{" +
                 "name='" + name + '\'' +
-                ", destination='" + destination+ '\'' +
+                ", destination='" + destination + '\'' +
                 '}';
     }
+
     @Override
     public void showInfo() {
         System.out.println("Passenger: " + name);
         System.out.println("Destination: " + destination.getStationName());
     }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 

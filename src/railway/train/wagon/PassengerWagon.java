@@ -1,14 +1,12 @@
 package railway.train.wagon;
 
-import railway.passenger.person.Passenger;
-
 import java.util.ArrayList;
 import java.util.List;
+import railway.passenger.person.Passenger;
 
 public final class PassengerWagon extends Wagon {
 
     private final List<Passenger> passengers;
-
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);
@@ -23,13 +21,13 @@ public final class PassengerWagon extends Wagon {
                 ", cargoList='" + passengers + '\'' +
                 '}';
     }
+
     @Override
     public void showInfo() {
         System.out.println("Passenger Wagon ID: " + wagonId);
         System.out.println("Capacity: " + capacity);
         System.out.println("Passengers onboard: " + passengers.size());
     }
-
 
     public void boardPassenger(Passenger passenger) {
 
@@ -62,8 +60,5 @@ public final class PassengerWagon extends Wagon {
             System.out.println("- " + passenger.getName());
         }
     }
-
-
-
 
 }

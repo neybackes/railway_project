@@ -20,12 +20,11 @@ public abstract class Wagon {
 
     public abstract void showInfo();
 
-
     public int getWagonId() {
         return wagonId;
     }
 
-    public void setWagonId(int wagonId){
+    public void setWagonId(int wagonId) {
         this.wagonId = wagonId;
     }
 
@@ -33,20 +32,17 @@ public abstract class Wagon {
         return capacity;
     }
 
-    public int getSeats(){
+    public int getSeats() {
         return (int) capacity;
     }
 
     //overloading
-    public void setCapacity(int capacity){
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public void setCapacity(double capacity){
+    public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
-
-
-
 
 }

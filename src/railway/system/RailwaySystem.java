@@ -6,9 +6,6 @@ public abstract class RailwaySystem {
 
     private String name;
 
-    public RailwaySystem() {
-    }
-
     @Override
     public abstract String toString();
 

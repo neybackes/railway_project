@@ -8,14 +8,10 @@ public abstract class Cargo {
     protected double weight;
     protected Station destination;
 
-    public Cargo() {
-    }
-
     public abstract void showInfo();
 
     @Override
     public abstract String toString();
-
 
     public abstract String getDescription();
 
@@ -26,7 +22,6 @@ public abstract class Cargo {
     public abstract void setWeight(double weight);
 
     public abstract Station getDestination();
-
 
     public abstract void setDestination(Station destination);
 }
