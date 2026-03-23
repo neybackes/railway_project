@@ -1,6 +1,6 @@
 package railway.train;
 
-public class Locomotive {
+public final class Locomotive {
 
     private String name;
     private int maxSpeed;

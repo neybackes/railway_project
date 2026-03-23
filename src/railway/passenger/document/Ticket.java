@@ -4,7 +4,7 @@ import railway.passenger.person.Passenger;
 import railway.station.Station;
 import railway.train.Train;
 
-public class Ticket extends Document {
+public final class Ticket extends Document {
 
     private String ticketId;
     private Passenger passenger;
