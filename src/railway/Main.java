@@ -20,7 +20,7 @@ public class Main {
         System.out.println("========== INSTANTIATING OBJECTS ==========");
         RailwayManager railway = new RailwayManager("Brazil Railways");
         RailwayManager railway2 = new RailwayManager("Brazil Railway");
-        RailwayManager railwayEmptyName = new RailwayManager("");gt
+        RailwayManager railwayEmptyName = new RailwayManager("");
         Station station1 = new Station("Central Station ", "Curitiba");
         Station station2 = new Station("North Station ", "Londrina");
         Station station3 = new Station("South Station ", "Maringa");
