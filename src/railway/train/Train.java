@@ -6,7 +6,7 @@ import railway.station.Route;
 import railway.station.Station;
 import railway.train.wagon.Wagon;
 
-public class Train {
+public final class Train {
 
     private int trainId;
     private String name;

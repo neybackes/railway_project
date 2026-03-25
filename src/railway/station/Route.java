@@ -1,6 +1,6 @@
 package railway.station;
 
-public class Route {
+public final class Route {
 
     private Station origin;
     private Station destination;

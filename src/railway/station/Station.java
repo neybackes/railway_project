@@ -1,6 +1,6 @@
 package railway.station;
 
-public class Station {
+public final class Station {
 
     private String name;
     private String city;

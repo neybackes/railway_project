@@ -9,6 +9,10 @@ public final class CargoWagon extends Wagon {
     private final List<GeneralCargo> cargoList;
     private double currentLoad;
 
+    {
+        System.out.println("New CargoWagon instance");
+    }
+
     public CargoWagon(int wagonId, double capacity) {
         super(wagonId, capacity);
         this.cargoList = new ArrayList<>();

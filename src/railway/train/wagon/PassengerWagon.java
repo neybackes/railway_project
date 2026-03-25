@@ -2,11 +2,16 @@ package railway.train.wagon;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import railway.passenger.person.Passenger;
 
 public final class PassengerWagon extends Wagon {
 
     private final List<Passenger> passengers;
+
+    {
+        System.out.println("New PassengerWagon instance");
+    }
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);

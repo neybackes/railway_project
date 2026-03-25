@@ -4,7 +4,7 @@ import railway.passenger.person.Passenger;
 import railway.station.Station;
 import railway.train.Train;
 
-public abstract class Document {
+public abstract class Document implements DocumentContract{
 
     private String ticketId;
     private Passenger passenger;
@@ -12,6 +12,14 @@ public abstract class Document {
     private Station destination;
     private double price;
     private boolean used;
+
+    static {
+        System.out.println("Document Class Initiated");
+    }
+
+    {
+        System.out.println("New Document instance");
+    }
 
     @Override
     public abstract String toString();

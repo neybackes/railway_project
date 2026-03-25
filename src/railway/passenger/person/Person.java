@@ -2,10 +2,18 @@ package railway.passenger.person;
 
 import railway.station.Station;
 
-public abstract class Person {
+public abstract class Person implements PersonContract {
 
     private String name;
     private Station destination;
+
+    static {
+        System.out.println("Person Class Initiated");
+    }
+
+    {
+        System.out.println("New Person instance");
+    }
 
     @Override
     public abstract String toString();

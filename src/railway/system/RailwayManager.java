@@ -12,9 +12,14 @@ public final class RailwayManager extends RailwaySystem {
     private List<Train> trains;
 
     public RailwayManager(String name) {
-        this.name = name;
-        this.stations = new ArrayList<>();
-        this.trains = new ArrayList<>();
+        if (RailwaySystemContract.isValidName(name)) {
+            this.name = name;
+            this.stations = new ArrayList<>();
+            this.trains = new ArrayList<>();
+        } else {
+            System.out.println("Invalid Name");
+
+        }
     }
 
     @Override

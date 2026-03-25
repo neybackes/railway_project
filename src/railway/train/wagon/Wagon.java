@@ -1,9 +1,13 @@
 package railway.train.wagon;
 
-public abstract class Wagon {
+public abstract class Wagon implements WagonContract {
 
     protected int wagonId;
     protected double capacity;
+
+    static {
+        System.out.println("Wagon Class Initiated");
+    }
 
     public Wagon(int wagonId, double capacity) {
         this.wagonId = wagonId;

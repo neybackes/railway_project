@@ -2,7 +2,15 @@ package railway.cargo;
 
 import railway.station.Station;
 
-public abstract class Cargo {
+public abstract class Cargo implements CargoContract {
+
+    static {
+        System.out.println("Cargo Class Initiated");
+    }
+
+    {
+        System.out.println("New Cargo instance");
+    }
 
     protected String description;
     protected double weight;
