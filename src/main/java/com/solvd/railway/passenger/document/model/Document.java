@@ -1,5 +1,6 @@
 package com.solvd.railway.passenger.document.model;
 
+import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.train.model.Train;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +30,7 @@ public abstract class Document implements DocumentContract {
 
     public abstract void setPrice(double price);
 
-    public abstract boolean validateBoarding(Train train);
+    public abstract boolean validateBoarding(Train train) throws InvalidBoardingException;
 
     public abstract void markUsed();
 

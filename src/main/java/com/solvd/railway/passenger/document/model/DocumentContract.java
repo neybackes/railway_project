@@ -1,5 +1,6 @@
 package com.solvd.railway.passenger.document.model;
 
+import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.train.model.Train;
 
 public interface DocumentContract {
@@ -18,7 +19,7 @@ public interface DocumentContract {
 
     void setTicketStatus(boolean used);
 
-    boolean validateBoarding(Train train);
+    boolean validateBoarding(Train train) throws InvalidBoardingException;
 
     void markUsed();
 

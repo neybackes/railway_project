@@ -1,10 +1,13 @@
 package com.solvd.railway.passenger.document.model;
 
+import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.passenger.person.model.Passenger;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.solvd.railway.exception.InvalidRailwayNameException;
+
 
 public class Ticket extends Document {
 
@@ -88,18 +91,13 @@ public class Ticket extends Document {
 
 
     @Override
-    public boolean validateBoarding(Train train) {
-
+    public boolean validateBoarding(Train train) throws InvalidBoardingException {
         if (used) {
-            logger.warn("Ticket already used.");
-            return false;
+            throw new InvalidBoardingException("Ticket already used.");
         }
-
         if (!train.getCurrentStation().equals(origin)) {
-            logger.warn("Passenger is at the wrong station.");
-            return false;
+            throw new InvalidBoardingException("Passenger is at the wrong station.");
         }
-
         return true;
     }
 
