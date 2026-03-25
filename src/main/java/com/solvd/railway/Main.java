@@ -2,6 +2,7 @@ package com.solvd.railway;
 
 
 import com.solvd.railway.cargo.model.GeneralCargo;
+import com.solvd.railway.exception.InvalidRailwayNameException;
 import com.solvd.railway.exception.WagonFullException;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
@@ -21,12 +22,22 @@ public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws WagonFullException {
+    public static void main(String[] args) throws WagonFullException, InvalidRailwayNameException {
 
         logger.info("========== INSTANTIATING OBJECTS ==========");
-        RailwayManager railway = new RailwayManager("Brazil Railways");
-        RailwayManager railway2 = new RailwayManager("Brazil Railway");
-        RailwayManager railwayEmptyName = new RailwayManager("");
+
+        RailwayManager railway;
+        RailwayManager railway2;
+
+        try {
+            railway = new RailwayManager("");
+            railway2 = new RailwayManager("");
+        } catch (InvalidRailwayNameException ex) {
+            logger.warn("Show problem: {}", ex.getMessage());
+            railway = new RailwayManager("Brazil Railways"); // retry
+            railway2 = new RailwayManager("Brazil Railway");
+        }
+
         Station station1 = new Station("Central Station ", "Curitiba");
         Station station2 = new Station("North Station ", "Londrina");
         Station station3 = new Station("South Station ", "Maringa");
@@ -61,42 +72,42 @@ public class Main {
         }
 
 
-        logger.info("====================\n");
+//        logger.info("====================\n");
+//
+//        logger.info("========== HASHCODE TEST ==========");
+//        logger.info("Railway hashCode: {}", railway.hashCode());
+//        logger.info("Train hashCode: {}", train1.hashCode());
+//        logger.info("Cargo hashCode: {}", cargo1.hashCode());
+//
+//        logger.info("\n========== OBJECT INFORMATION ==========");
+//        logger.info("Railway object:");
+//        logger.info(railway.toString());
+//
+//        logger.info("\n========== EQUALS TEST ==========");
+//        logger.info("Comparing Ticket objects (ticket1 vs ticket2):");
+//        logger.info("Result: {}", ticket1.equals(ticket2));
+//
+//        logger.info("\nComparing Railway objects (railway vs railway2):");
+//        logger.info("Result: {}", railway.equals(railway2));
 
-        logger.info("========== HASHCODE TEST ==========");
-        logger.info("Railway hashCode: {}", railway.hashCode());
-        logger.info("Train hashCode: {}", train1.hashCode());
-        logger.info("Cargo hashCode: {}", cargo1.hashCode());
-
-        logger.info("\n========== OBJECT INFORMATION ==========");
-        logger.info("Railway object:");
-        logger.info(railway.toString());
-
-        logger.info("\n========== EQUALS TEST ==========");
-        logger.info("Comparing Ticket objects (ticket1 vs ticket2):");
-        logger.info("Result: {}", ticket1.equals(ticket2));
-
-        logger.info("\nComparing Railway objects (railway vs railway2):");
-        logger.info("Result: {}", railway.equals(railway2));
-
-        logger.info("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
-
-        Set<Ticket> tickets = new HashSet<>();
-
-        Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
-        Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
-
-        tickets.add(t1);
-        logger.info("Ticket added: {}", t1.getTicketId());
-
-        if (tickets.add(t2)) {
-            logger.info("Ticket added: {}", t2.getTicketId());
-        } else {
-            logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
-        }
-
-        logger.info("Total unique tickets: {}", tickets.size());
-        logger.info("[TEST] Ticket uniqueness validation finished");
+//        logger.info("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
+//
+//        Set<Ticket> tickets = new HashSet<>();
+//
+//        Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
+//        Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
+//
+//        tickets.add(t1);
+//        logger.info("Ticket added: {}", t1.getTicketId());
+//
+//        if (tickets.add(t2)) {
+//            logger.info("Ticket added: {}", t2.getTicketId());
+//        } else {
+//            logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
+//        }
+//
+//        logger.info("Total unique tickets: {}", tickets.size());
+//        logger.info("[TEST] Ticket uniqueness validation finished");
 
     }
 }

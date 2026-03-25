@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.solvd.railway.exception.InvalidRailwayNameException;
 
 public final class RailwayManager extends RailwaySystem {
 
@@ -16,13 +17,13 @@ public final class RailwayManager extends RailwaySystem {
     private List<Station> stations;
     private List<Train> trains;
 
-    public RailwayManager(String name) {
+    public RailwayManager(String name) throws InvalidRailwayNameException {
         if (RailwaySystemContract.isValidName(name)) {
             this.name = name;
             this.stations = new ArrayList<>();
             this.trains = new ArrayList<>();
         } else {
-            logger.warn("Invalid Name");
+            throw new InvalidRailwayNameException("Invalid railway name: " + name);
 
         }
     }
