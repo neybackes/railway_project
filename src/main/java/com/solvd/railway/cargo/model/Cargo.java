@@ -1,0 +1,35 @@
+package com.solvd.railway.cargo.model;
+
+import com.solvd.railway.station.model.Station;
+
+public abstract class Cargo implements CargoContract {
+
+    static {
+        System.out.println("Cargo Class Initiated");
+    }
+
+    {
+        System.out.println("New Cargo instance");
+    }
+
+    protected String description;
+    protected double weight;
+    protected Station destination;
+
+    public abstract void showInfo();
+
+    @Override
+    public abstract String toString();
+
+    public abstract String getDescription();
+
+    public abstract void setDescription(String description);
+
+    public abstract double getWeight();
+
+    public abstract void setWeight(double weight);
+
+    public abstract Station getDestination();
+
+    public abstract void setDestination(Station destination);
+}

@@ -39,6 +39,15 @@ Simple Java study project modeling a railway system.
     - static/instance init blocks to show class loading and object instantiation
     - static validation helper used during system creation.
 
+### Exceptions. Logger
+
+  - Create 3 custom exceptions. Use them in project
+  - Refactor folders structure of project to meet what I explained on the lesson ☑
+  - Add Log4j to the project and replace System outs
+    - Log4j added into lib folder
+    - System outs not yet replaced
+    
+
 Code layout:
 - `Main.java`: entry point.
 - `cargo/`, `passenger/`, `station/`, `system/`, `train/`: domain classes.
