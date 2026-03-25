@@ -1,12 +1,19 @@
 package com.solvd.railway.cargo.model;
 
 import com.solvd.railway.station.model.Station;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class GeneralCargo extends Cargo {
 
+    private static final Logger logger = LogManager.getLogger(GeneralCargo.class);
     private String description;
     private double weight;
     private Station destination;
+
+    {
+        logger.info("New GeneralCargo instance");
+    }
 
     public GeneralCargo(String description, double weight, Station destination) {
         this.description = description;
@@ -22,9 +29,9 @@ public final class GeneralCargo extends Cargo {
 
     @Override
     public void showInfo() {
-        System.out.println("Cargo: " + description);
-        System.out.println("Weight: " + weight + " tons");
-        System.out.println("Destination: " + destination.getStationName());
+        logger.info("Cargo: {}", description);
+        logger.info("Weight: {} tons", weight);
+        logger.info("Destination: {}", destination.getStationName());
     }
 
     public String getDescription() {
@@ -50,28 +57,5 @@ public final class GeneralCargo extends Cargo {
     public void setDestination(Station destination) {
         this.destination = destination;
     }
-
-    public static interface CargoContract {
-
-        static boolean isValidWeight(double weight) {
-            return weight > 0;
-        }
-
-        String getDescription();
-
-        void setDescription(String description);
-
-        double getWeight();
-
-        void setWeight(double weight);
-
-        Station getDestination();
-
-        void setDestination(Station destination);
-
-        void showInfo();
-
-        @Override
-        String toString();
-    }
+    
 }

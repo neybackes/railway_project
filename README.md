@@ -45,7 +45,6 @@ Simple Java study project modeling a railway system.
   - Refactor folders structure of project to meet what I explained on the lesson ☑
   - Add Log4j to the project and replace System outs
     - Log4j added into lib folder
-    - System outs not yet replaced
 
 ### Java Project Structure Flow
 

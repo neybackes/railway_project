@@ -4,9 +4,12 @@ import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class RailwayManager extends RailwaySystem {
 
+    private static final Logger logger = LogManager.getLogger(RailwayManager.class);
     private String name;
     private List<Station> stations;
     private List<Train> trains;
@@ -17,7 +20,7 @@ public final class RailwayManager extends RailwaySystem {
             this.stations = new ArrayList<>();
             this.trains = new ArrayList<>();
         } else {
-            System.out.println("Invalid Name");
+            logger.warn("Invalid Name");
 
         }
     }
@@ -36,10 +39,10 @@ public final class RailwayManager extends RailwaySystem {
         //explicit casting -- needs more research
         RailwayManager compareCast = (RailwayManager) compare;
         if (this.name.equals(compareCast.name)) {
-            System.out.println("Atribute " + name + " is equals.");
+            logger.info("Atribute {} is equals.", name);
             return true;
         } else {
-            System.out.println("Attribute " + name + " is not equal.");
+            logger.warn("Attribute {} is not equal.", name);
             return false;
         }
     }
@@ -66,34 +69,34 @@ public final class RailwayManager extends RailwaySystem {
 
     public void addStation(Station station) {
         stations.add(station);
-        System.out.println("Station " + station.getStationName() + " added to railway system.");
+        logger.info("Station {} added to railway system.", station.getStationName());
     }
 
     public void addTrain(Train train) {
         trains.add(train);
-        System.out.println("Train " + train.getName() + " added to railway system.");
+        logger.info("Train {} added to railway system.", train.getName());
     }
 
     public void showStations() {
         if (stations.isEmpty()) {
-            System.out.println("No stations registered.");
+            logger.warn("No stations registered.");
         }
 
-        System.out.println("Stations in " + name + ":");
+        logger.info("Stations in {}:", name);
         for (Station station : stations) {
-            System.out.println("- " + station.getStationName() + " (" + station.getStationCity() + ")");
+            logger.info("- {} ({})", station.getStationName(), station.getStationCity());
         }
     }
 
     public void showTrains() {
         if (trains.isEmpty()) {
-            System.out.println("No trains registered.");
+            logger.warn("No trains registered.");
             return;
         }
 
-        System.out.println("Trains in " + name + ":");
+        logger.info("Trains in {}:", name);
         for (Train train : trains) {
-            System.out.println("- " + train.getName() + " (ID: " + train.getTrainId() + ")");
+            logger.info("- {} (ID: {})", train.getName(), train.getTrainId());
         }
     }
 }

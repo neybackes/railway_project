@@ -1,7 +1,8 @@
 package com.solvd.railway;
 
+
 import com.solvd.railway.cargo.model.GeneralCargo;
-import com.solvd.railway.passenger.document.model.Document;
+import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
@@ -12,12 +13,16 @@ import com.solvd.railway.train.model.wagon.model.CargoWagon;
 import com.solvd.railway.train.model.wagon.model.PassengerWagon;
 import java.util.HashSet;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
 
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) {
 
-        System.out.println("========== INSTANTIATING OBJECTS ==========");
+        logger.info("========== INSTANTIATING OBJECTS ==========");
         RailwayManager railway = new RailwayManager("Brazil Railways");
         RailwayManager railway2 = new RailwayManager("Brazil Railway");
         RailwayManager railwayEmptyName = new RailwayManager("");
@@ -36,8 +41,8 @@ public class Main {
         train2.addWagon(cargoWagon);
         Passenger passenger1 = new Passenger("Ana", station2);
         Passenger passenger2 = new Passenger("Pedro", station2);
-        Document.Ticket ticket1 = new Document.Ticket("T001", passenger1, station1, station2, 120.0);
-        Document.Ticket ticket2 = new Document.Ticket("T002", passenger2, station1, station2, 130);
+        Ticket ticket1 = new Ticket("T001", passenger1, station1, station2, 120.0);
+        Ticket ticket2 = new Ticket("T002", passenger2, station1, station2, 130);
         GeneralCargo cargo1 = new GeneralCargo("Steel", 10, station2);
 
         railway.addStation(station1);
@@ -48,44 +53,42 @@ public class Main {
         passengerWagon.boardPassenger(passenger1);
         cargoWagon.loadCargo(cargo1);
 
-        System.out.println("====================\n");
+        logger.info("====================\n");
 
-        System.out.println("========== HASHCODE TEST ==========");
-        System.out.println("Railway hashCode: " + railway.hashCode());
-        System.out.println("Train hashCode: " + train1.hashCode());
-        System.out.println("Cargo hashCode: " + cargo1.hashCode());
+        logger.info("========== HASHCODE TEST ==========");
+        logger.info("Railway hashCode: {}", railway.hashCode());
+        logger.info("Train hashCode: {}", train1.hashCode());
+        logger.info("Cargo hashCode: {}", cargo1.hashCode());
 
-        System.out.println("\n========== OBJECT INFORMATION ==========");
-        System.out.println("Railway object:");
-        System.out.println(railway.toString());
+        logger.info("\n========== OBJECT INFORMATION ==========");
+        logger.info("Railway object:");
+        logger.info(railway.toString());
 
-        System.out.println("\n========== EQUALS TEST ==========");
-        System.out.println("Comparing Ticket objects (ticket1 vs ticket2):");
-        System.out.println("Result: " + ticket1.equals(ticket2));
+        logger.info("\n========== EQUALS TEST ==========");
+        logger.info("Comparing Ticket objects (ticket1 vs ticket2):");
+        logger.info("Result: {}", ticket1.equals(ticket2));
 
-        System.out.println("\nComparing Railway objects (railway vs railway2):");
-        System.out.println("Result: " + railway.equals(railway2));
+        logger.info("\nComparing Railway objects (railway vs railway2):");
+        logger.info("Result: {}", railway.equals(railway2));
 
-        System.out.println("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
+        logger.info("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
 
-        Set<Document.Ticket> tickets = new HashSet<>();
+        Set<Ticket> tickets = new HashSet<>();
 
-        Document.Ticket t1 = new Document.Ticket("T001", passenger1, station1, station2, 120.0);
-        Document.Ticket t2 = new Document.Ticket("T001", passenger2, station1, station2, 130.0);
+        Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
+        Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
 
-        if (tickets.add(t1)) {
-            System.out.println("Ticket added: " + t1.getTicketId());
-        } else {
-            System.out.println("Duplicate ticket detected: " + t1.getTicketId());
-        }
+        tickets.add(t1);
+        logger.info("Ticket added: {}", t1.getTicketId());
 
         if (tickets.add(t2)) {
-            System.out.println("Ticket added: " + t2.getTicketId());
+            logger.info("Ticket added: {}", t2.getTicketId());
         } else {
-            System.out.println("Duplicate ticket detected: " + t2.getTicketId());
+            logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
         }
 
-        System.out.println("Total unique tickets: " + tickets.size());
+        logger.info("Total unique tickets: {}", tickets.size());
+        logger.info("[TEST] Ticket uniqueness validation finished");
 
     }
 }

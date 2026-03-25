@@ -1,11 +1,18 @@
 package com.solvd.railway.passenger.person.model;
 
 import com.solvd.railway.station.model.Station;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Passenger extends Person {
 
+    private static final Logger logger = LogManager.getLogger(Passenger.class);
     private String name;
     private Station destination;
+
+    {
+        logger.info("New Passenger instance");
+    }
 
     public Passenger(String name, Station destination) {
         this.name = name;
@@ -22,8 +29,8 @@ public final class Passenger extends Person {
 
     @Override
     public void showInfo() {
-        System.out.println("Passenger: " + name);
-        System.out.println("Destination: " + destination.getStationName());
+        logger.info("Passenger: {}", name);
+        logger.info("Destination: {}", destination.getStationName());
     }
 
     public String getName() {

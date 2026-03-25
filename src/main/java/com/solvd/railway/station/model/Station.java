@@ -1,9 +1,21 @@
 package com.solvd.railway.station.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class Station {
 
+    private static final Logger logger = LogManager.getLogger(Station.class);
     private String name;
     private String city;
+
+    static {
+        logger.info("Station Class Initiated");
+    }
+
+    {
+        logger.info("New Station instance");
+    }
 
     public Station(String name, String city) {
         this.name = name;
@@ -19,8 +31,8 @@ public final class Station {
     }
 
     public void showInfo() {
-        System.out.println("Station: " + name);
-        System.out.println("City: " + city);
+        logger.info("Station: {}", name);
+        logger.info("City: {}", city);
     }
 
     public String getStationName() {

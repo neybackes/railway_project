@@ -1,4 +1,5 @@
 package com.solvd.railway.cargo.model;
+
 import com.solvd.railway.station.model.Station;
 
 public interface CargoContract {

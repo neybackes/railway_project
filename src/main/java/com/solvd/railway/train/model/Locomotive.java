@@ -1,9 +1,22 @@
 package com.solvd.railway.train.model;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public final class Locomotive {
 
+    private static final Logger logger = LogManager.getLogger(Locomotive.class);
     private String name;
     private int maxSpeed;
+
+    static {
+        logger.info("Train Locomotive Initiated");
+    }
+
+    {
+        logger.info("New Locomotive instance");
+    }
+
 
     public Locomotive(String name, int maxSpeed) {
         this.name = name;
@@ -19,8 +32,8 @@ public final class Locomotive {
     }
 
     public void showInfo() {
-        System.out.println("Locomotive: " + name);
-        System.out.println("Max speed: " + maxSpeed + " km/h");
+        logger.info("Locomotive: {}", name);
+        logger.info("Max speed: " + maxSpeed + " km/h");
     }
 
     public String getName() {

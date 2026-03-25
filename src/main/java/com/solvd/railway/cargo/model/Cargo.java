@@ -1,16 +1,18 @@
 package com.solvd.railway.cargo.model;
 
 import com.solvd.railway.station.model.Station;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class Cargo implements CargoContract {
 
+    private static final Logger logger = LogManager.getLogger(Cargo.class);
+
     static {
-        System.out.println("Cargo Class Initiated");
+        logger.info("Cargo Class Initiated");
     }
 
-    {
-        System.out.println("New Cargo instance");
-    }
+    
 
     protected String description;
     protected double weight;

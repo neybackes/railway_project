@@ -5,15 +5,25 @@ import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.wagon.model.Wagon;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Train {
-
+    private static final Logger logger = LogManager.getLogger(Train.class);
     private int trainId;
     private String name;
     private Locomotive locomotive;
     private Station currentStation;
     private Route route;
     private List<Wagon> wagons;
+
+    static {
+        logger.info("Train Class Initiated");
+    }
+
+    {
+        logger.info("New Train instance");
+    }
 
     public Train(int trainId, String name, Locomotive locomotive, Station currentStation, Route route) {
         this.trainId = trainId;
@@ -37,11 +47,11 @@ public final class Train {
     }
 
     public void showInfo() {
-        System.out.println("Train ID: " + trainId);
-        System.out.println("Train Name: " + name);
-        System.out.println("Locomotive: " + locomotive.getName());
-        System.out.println("Current Station: " + currentStation.getStationName());
-        System.out.println("Number of wagons: " + wagons.size());
+        logger.info("Train ID: {}", trainId);
+        logger.info("Train Name: {}", name);
+        logger.info("Locomotive: {}", locomotive.getName());
+        logger.info("Current Station: {}", currentStation.getStationName());
+        logger.info("Number of wagons: {}", wagons.size());
     }
 
     public int getTrainId() {
@@ -78,33 +88,33 @@ public final class Train {
 
     public void addWagon(Wagon wagon) {
         wagons.add(wagon);
-        System.out.println("Wagon " + wagon.getWagonId() + " added to train " + name + ".");
+        logger.info("Wagon {} added to train {}.", wagon.getWagonId(), name);
     }
 
     public void moveTo(Station newStation) {
 
         if (!route.isStationOnRoute(newStation)) {
-            System.out.println("Station " + newStation.getStationName() + " is not on this route.");
+            logger.warn("Station {} is not on this route.", newStation.getStationName());
             return;
         }
 
         if (currentStation.equals(newStation)) {
-            System.out.println("Train " + name + " is already at " + newStation.getStationName());
+            logger.warn("Train {} is already at {}", name, newStation.getStationName());
             return;
         }
 
-        System.out.println("Train " + name + " leaving " + currentStation.getStationName());
+        logger.info("Train {} leaving {}", name, currentStation.getStationName());
         currentStation = newStation;
-        System.out.println("Train " + name + " arrived at " + currentStation.getStationName());
+        logger.info("Train {} arrived at {}", name, currentStation.getStationName());
     }
 
     public void showCurrentStation() {
-        System.out.println("Train " + name + " is currently at " + currentStation.getStationName());
+        logger.info("Train {} is currently at {}", name, currentStation.getStationName());
     }
 
     public void showWagons() {
         if (wagons.isEmpty()) {
-            System.out.println("No wagons attached to train " + name + ".");
+            logger.warn("No wagons attached to train {}.", name);
             return;
         }
 
