@@ -42,6 +42,9 @@ Simple Java study project modeling a railway system.
 ### Exceptions. Logger
 
   - Create 3 custom exceptions. Use them in project
+    - InvalidBoardingException
+    - InvalidRailwayNameException
+    - WagonFullException
   - Refactor folders structure of project to meet what I explained on the lesson ☑
   - Add Log4j to the project and replace System outs
     - Log4j added into lib folder

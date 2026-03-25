@@ -34,6 +34,7 @@ public class Main {
         RailwayManager railway2;
         PassengerWagon passengerWagon;
         CargoWagon cargoWagon;
+
         logger.info("========== InvalidRailwayNameException ==========");
         try {
             railway = new RailwayManager("");
@@ -43,7 +44,7 @@ public class Main {
             railway = new RailwayManager("Brazil Railways"); // retry
             railway2 = new RailwayManager("Brazil Railway");
         }
-        System.out.println();
+
         Station station1 = new Station("Central Station ", "Curitiba");
         Station station2 = new Station("North Station ", "Londrina");
         Station station3 = new Station("South Station ", "Maringa");
@@ -68,7 +69,7 @@ public class Main {
         railway.addStation(station3);
         railway.addTrain(train1);
         railway.addTrain(train2);
-        System.out.println();
+
         logger.info("========== WagonFullException ==========");
         try {
             passengerWagon.boardPassenger(passenger1);
@@ -81,7 +82,7 @@ public class Main {
             passengerWagon.boardPassenger(passenger1);
             passengerWagon.boardPassenger(passenger2);
         }
-        System.out.println();
+
         logger.info("========== InvalidBoardingException ==========");
         try {
             ticket1.markUsed();
@@ -91,7 +92,6 @@ public class Main {
             logger.warn("Boarding denied: {}", ex.getMessage());
         }
 
-        System.out.println();
         logger.info("====================\n");
 
         logger.info("========== HASHCODE TEST ==========");

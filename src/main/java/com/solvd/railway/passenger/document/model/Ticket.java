@@ -6,7 +6,6 @@ import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.solvd.railway.exception.InvalidRailwayNameException;
 
 
 public class Ticket extends Document {
