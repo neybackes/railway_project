@@ -23,8 +23,7 @@ public final class GeneralCargo extends Cargo {
 
     @Override
     public String toString() {
-        return "Cargo{" + "description='" + description + '\'' + ", weight='" + weight + '\''
-                + ", destination='" + destination + '\'' + '}';
+        return "Cargo{" + "description='" + description + '\'' + ", weight='" + weight + '\'' + ", destination='" + destination + '\'' + '}';
     }
 
     @Override
@@ -57,5 +56,5 @@ public final class GeneralCargo extends Cargo {
     public void setDestination(Station destination) {
         this.destination = destination;
     }
-    
+
 }

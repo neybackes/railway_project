@@ -25,10 +25,7 @@ public final class Locomotive {
 
     @Override
     public String toString() {
-        return "Locomotive{" +
-                "name='" + name + '\'' +
-                ", capacity='" + maxSpeed + '\'' +
-                '}';
+        return "Locomotive{" + "name='" + name + '\'' + ", capacity='" + maxSpeed + '\'' + '}';
     }
 
     public void showInfo() {

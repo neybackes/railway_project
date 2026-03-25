@@ -1,8 +1,10 @@
 package com.solvd.railway.train.model.wagon.model;
 
 import com.solvd.railway.cargo.model.GeneralCargo;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,10 +26,7 @@ public final class CargoWagon extends Wagon {
 
     @Override
     public String toString() {
-        return "CargoWagon{" +
-                super.toString() +
-                ", cargoList='" + cargoList + '\'' +
-                '}';
+        return "CargoWagon{" + super.toString() + ", cargoList='" + cargoList + '\'' + '}';
     }
 
     @Override

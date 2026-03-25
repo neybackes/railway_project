@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Ticket extends Document {
-    
+
     private static final Logger logger = LogManager.getLogger(Ticket.class);
     private String ticketId;
     private final Passenger passenger;
@@ -31,14 +31,7 @@ public class Ticket extends Document {
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "ticketId='" + ticketId + '\'' +
-                ", passenger='" + passenger + '\'' +
-                ", origin='" + origin + '\'' +
-                ", destination='" + destination + '\'' +
-                ", price='" + price + '\'' +
-                ", used='" + used + '\'' +
-                '}';
+        return "Ticket{" + "ticketId='" + ticketId + '\'' + ", passenger='" + passenger + '\'' + ", origin='" + origin + '\'' + ", destination='" + destination + '\'' + ", price='" + price + '\'' + ", used='" + used + '\'' + '}';
     }
 
     @Override
@@ -92,7 +85,7 @@ public class Ticket extends Document {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
 
     @Override
     public boolean validateBoarding(Train train) {

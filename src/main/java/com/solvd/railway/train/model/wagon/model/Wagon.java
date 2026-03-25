@@ -20,10 +20,7 @@ public abstract class Wagon implements WagonContract {
 
     @Override
     public String toString() {
-        return "Wagon{" +
-                "wagonId=" + wagonId +
-                ", capacity=" + capacity +
-                '}';
+        return "Wagon{" + "wagonId=" + wagonId + ", capacity=" + capacity + '}';
     }
 
     public abstract void showInfo();

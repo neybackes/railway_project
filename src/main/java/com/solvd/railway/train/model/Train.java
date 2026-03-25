@@ -3,8 +3,10 @@ package com.solvd.railway.train.model;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.wagon.model.Wagon;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,14 +38,7 @@ public final class Train {
 
     @Override
     public String toString() {
-        return "Train{" +
-                "trainId='" + trainId + '\'' +
-                ", name='" + name + '\'' +
-                ", locomotive='" + locomotive + '\'' +
-                ", currentStation='" + currentStation + '\'' +
-                ", route='" + route + '\'' +
-                ", wagons='" + wagons + '\'' +
-                '}';
+        return "Train{" + "trainId='" + trainId + '\'' + ", name='" + name + '\'' + ", locomotive='" + locomotive + '\'' + ", currentStation='" + currentStation + '\'' + ", route='" + route + '\'' + ", wagons='" + wagons + '\'' + '}';
     }
 
     public void showInfo() {

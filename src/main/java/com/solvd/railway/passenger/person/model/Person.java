@@ -1,6 +1,5 @@
 package com.solvd.railway.passenger.person.model;
 
-import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.station.model.Station;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +15,6 @@ abstract class Person implements PersonContract {
     static {
         logger.info("Person Class Initiated");
     }
-
 
     @Override
     public abstract String toString();

@@ -15,31 +15,22 @@ public abstract class Document implements DocumentContract {
     @Override
     public abstract String toString();
 
-    @Override
     public abstract void showInfo();
 
-    @Override
     public abstract String getTicketId();
 
-    @Override
     public abstract void setTicketId(String ticketId);
 
-    @Override
     public abstract double getPrice();
 
-    @Override
     public abstract boolean getTicketStatus();
 
-    @Override
     public abstract void setTicketStatus(boolean used);
 
-    @Override
     public abstract void setPrice(double price);
 
-    @Override
     public abstract boolean validateBoarding(Train train);
 
-    @Override
     public abstract void markUsed();
 
 

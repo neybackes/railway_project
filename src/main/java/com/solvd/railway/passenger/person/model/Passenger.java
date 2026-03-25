@@ -21,10 +21,7 @@ public final class Passenger extends Person {
 
     @Override
     public String toString() {
-        return "Passenger{" +
-                "name='" + name + '\'' +
-                ", destination='" + destination + '\'' +
-                '}';
+        return "Passenger{" + "name='" + name + '\'' + ", destination='" + destination + '\'' + '}';
     }
 
     @Override

@@ -24,10 +24,7 @@ public final class Station {
 
     @Override
     public String toString() {
-        return "Station{" +
-                "name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+        return "Station{" + "name='" + name + '\'' + ", city='" + city + '\'' + '}';
     }
 
     public void showInfo() {

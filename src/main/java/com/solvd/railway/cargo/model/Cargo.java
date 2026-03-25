@@ -12,12 +12,6 @@ public abstract class Cargo implements CargoContract {
         logger.info("Cargo Class Initiated");
     }
 
-    
-
-    protected String description;
-    protected double weight;
-    protected Station destination;
-
     public abstract void showInfo();
 
     @Override

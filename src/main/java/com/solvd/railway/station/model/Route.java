@@ -26,11 +26,7 @@ public final class Route {
 
     @Override
     public String toString() {
-        return "Route{" +
-                "origin ='" + origin + '\'' +
-                ", destination='" + destination + '\'' +
-                ", distance='" + distance + '\'' +
-                '}';
+        return "Route{" + "origin ='" + origin + '\'' + ", destination='" + destination + '\'' + ", distance='" + distance + '\'' + '}';
     }
 
     public void showInfo() {

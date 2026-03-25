@@ -2,8 +2,10 @@ package com.solvd.railway.system.model;
 
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,11 +29,7 @@ public final class RailwayManager extends RailwaySystem {
 
     @Override
     public String toString() {
-        return "RailwaySystem{" +
-                "name='" + name + '\'' +
-                ", stations=" + stations +
-                ", trains=" + trains +
-                '}';
+        return "RailwaySystem{" + "name='" + name + '\'' + ", stations=" + stations + ", trains=" + trains + '}';
     }
 
     @Override
