@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.solvd.railway.exception.WagonFullException;
 
 public final class PassengerWagon extends Wagon {
 
@@ -34,13 +35,12 @@ public final class PassengerWagon extends Wagon {
         logger.info("Passengers onboard: {}", passengers.size());
     }
 
-    public void boardPassenger(Passenger passenger) {
+    public void boardPassenger(Passenger passenger) throws WagonFullException {
 
         if (passengers.size() >= capacity) {
-            logger.warn("Wagon {} is full.", wagonId);
-            return;
-        }
+            throw new WagonFullException("Passenger Wagon is full");
 
+        }
         passengers.add(passenger);
         logger.info("{} boarded wagon {}", passenger.getName(), wagonId);
     }

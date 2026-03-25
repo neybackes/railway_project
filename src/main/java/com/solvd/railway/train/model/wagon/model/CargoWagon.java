@@ -1,10 +1,9 @@
 package com.solvd.railway.train.model.wagon.model;
-
 import com.solvd.railway.cargo.model.GeneralCargo;
+import com.solvd.railway.exception.WagonFullException;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,11 +36,10 @@ public final class CargoWagon extends Wagon {
         logger.info("Cargo items: {}", cargoList.size());
     }
 
-    public void loadCargo(GeneralCargo cargo) {
+    public void loadCargo(GeneralCargo cargo) throws WagonFullException {
 
         if (currentLoad + cargo.getWeight() > capacity) {
-            logger.warn("Cannot load cargo. Wagon {} exceeds capacity.", wagonId);
-            return;
+            throw new WagonFullException("Cargo Wagon is full");
         }
 
         cargoList.add(cargo);

@@ -2,6 +2,7 @@ package com.solvd.railway;
 
 
 import com.solvd.railway.cargo.model.GeneralCargo;
+import com.solvd.railway.exception.WagonFullException;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
 import com.solvd.railway.station.model.Route;
@@ -20,7 +21,7 @@ public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WagonFullException {
 
         logger.info("========== INSTANTIATING OBJECTS ==========");
         RailwayManager railway = new RailwayManager("Brazil Railways");
@@ -35,8 +36,8 @@ public class Main {
         Locomotive locomotive2 = new Locomotive("Cargo C01", 80);
         Train train1 = new Train(1, "Express", locomotive1, station1, route1);
         Train train2 = new Train(2, "Regional", locomotive2, station2, route2);
-        PassengerWagon passengerWagon = new PassengerWagon(1, 50);
-        CargoWagon cargoWagon = new CargoWagon(2, 20);
+        PassengerWagon passengerWagon = new PassengerWagon(1, 0);
+        CargoWagon cargoWagon = new CargoWagon(2, 0);
         train1.addWagon(passengerWagon);
         train2.addWagon(cargoWagon);
         Passenger passenger1 = new Passenger("Ana", station2);
@@ -50,8 +51,15 @@ public class Main {
         railway.addStation(station3);
         railway.addTrain(train1);
         railway.addTrain(train2);
-        passengerWagon.boardPassenger(passenger1);
-        cargoWagon.loadCargo(cargo1);
+
+        try {
+            passengerWagon.boardPassenger(passenger1);
+            cargoWagon.loadCargo(cargo1);
+
+        } catch (WagonFullException ex) {
+            logger.warn("Show Error: {}", ex.getMessage());
+        }
+
 
         logger.info("====================\n");
 
