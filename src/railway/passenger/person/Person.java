@@ -2,7 +2,9 @@ package railway.passenger.person;
 
 import railway.station.Station;
 
-public abstract class Person implements PersonContract {
+public
+
+abstract class Person implements PersonContract {
 
     private String name;
     private Station destination;
