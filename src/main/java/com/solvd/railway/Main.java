@@ -109,22 +109,6 @@ public class Main {
         logger.info("\nComparing Railway objects (railway vs railway2):");
         logger.info("Result: {}", railway.equals(railway2));
 
-        logger.info("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
-
-        Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
-        Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
-
-        t1.addTicket(t1);
-        logger.info("Ticket added: {}", t1.getTicketId());
-
-        if (t1.addTicket(t2)) {
-            logger.info("Ticket added: {}", t2.getTicketId());
-        } else {
-            logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
-        }
-
-        logger.info("Total unique tickets: {}", t1.getTickets().size());
-
 
         logger.info("\n========== COLLECTION TESTS ==========");
 
@@ -147,19 +131,54 @@ public class Main {
 
         logger.info("\n========== MAP ==========");
 
-        RailwayManager manager = new RailwayManager("Central");
+        RailwayManager managerMap = new RailwayManager("Central");
         Train train3 = new Train(1, "Express", locomotive1, station1, route1);
-        manager.addTrain(train3);
+        managerMap.addTrain(train3);
 
-        Train resultant = manager.getTrainByName("Express");
+        Train resultant = managerMap.getTrainByName("Express");
         if (resultant != null) {
             logger.info("Train found: {}", resultant.getName());
         } else {
             logger.warn("Train not found.");
         }
 
+        logger.info("\n========== LIST ==========");
 
+        RailwayManager managerList = new RailwayManager("Central");
+        Train train4 = new Train(1, "Express", locomotive1, station1, route1);
+        Train train5 = new Train(2, "Regional", locomotive2, station2, route2);
 
+        managerList.addTrain(train4);
+        managerList.addTrain(train5);
+
+        if (managerList.getTrains().isEmpty()) {
+            logger.warn("No trains in the list.");
+        } else {
+            for (Train train : managerList.getTrains()) {
+                logger.info("Train in list: {}", train.getName());
+            }
+        }
+
+        logger.info("First train in list: {}", managerList.getTrains().getFirst().getName());
+
+        logger.info("\n========== QUEUE ==========");
+
+        station1.addPassengerToQueue(passenger1);
+        station1.addPassengerToQueue(passenger2);
+
+        Passenger nextPassenger = station1.getNextPassenger();
+        if (nextPassenger != null) {
+            logger.info("Next passenger in queue: {}", nextPassenger.getName());
+        } else {
+            logger.warn("No passengers in queue.");
+        }
+
+        Passenger boardedPassenger = station1.boardNextPassenger();
+        if (boardedPassenger != null) {
+            logger.info("Passenger boarded: {}", boardedPassenger.getName());
+        } else {
+            logger.warn("No passenger available for boarding.");
+        }
 
     }
 }

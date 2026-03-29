@@ -1,13 +1,17 @@
 package com.solvd.railway.station.model;
 
+import com.solvd.railway.passenger.person.model.Passenger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public final class Station {
 
     private static final Logger logger = LogManager.getLogger(Station.class);
     private String name;
     private String city;
+    private Queue<Passenger> waitingPassengers = new LinkedList<>();
 
     static {
         logger.info("Station Class Initiated");
@@ -46,6 +50,22 @@ public final class Station {
 
     public void setStationCity(String city) {
         this.city = city;
+    }
+
+    public void addPassengerToQueue(Passenger passenger) {
+        waitingPassengers.offer(passenger);
+    }
+
+    public Passenger boardNextPassenger() {
+        return waitingPassengers.poll();
+    }
+
+    public Passenger getNextPassenger() {
+        return waitingPassengers.peek();
+    }
+
+    public Queue<Passenger> getWaitingPassengers() {
+        return waitingPassengers;
     }
 
 }
