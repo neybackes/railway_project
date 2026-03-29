@@ -1,7 +1,6 @@
 package com.solvd.railway;
 
 
-import com.solvd.railway.cargo.model.Cargo;
 import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.exception.InvalidRailwayNameException;
@@ -128,6 +127,20 @@ public class Main {
 
         logger.info("Total unique tickets: {}", tickets.size());
         logger.info("[TEST] Ticket uniqueness validation finished");
+
+
+        logger.info("\n========== COLLECTION TESTS ==========");
+        RailwayManager manager = new RailwayManager("Central");
+        Train train3 = new Train(1, "Express", locomotive1, station1, route1);
+        manager.addTrain(train3);
+
+        Train resultant = manager.getTrainByName("Express");
+        if (resultant != null) {
+            System.out.println("Train found: " + resultant.getName());
+        } else {
+            System.out.println("Trem not found.");
+        }
+
 
     }
 }

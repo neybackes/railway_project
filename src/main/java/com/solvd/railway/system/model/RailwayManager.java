@@ -6,6 +6,9 @@ import com.solvd.railway.train.model.Train;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.solvd.railway.exception.InvalidRailwayNameException;
@@ -16,12 +19,14 @@ public final class RailwayManager extends RailwaySystem {
     private String name;
     private List<Station> stations;
     private List<Train> trains;
+    private Map<String, Train> trainMap;
 
     public RailwayManager(String name) throws InvalidRailwayNameException {
         if (RailwaySystemContract.isValidName(name)) {
             this.name = name;
             this.stations = new ArrayList<>();
             this.trains = new ArrayList<>();
+            this.trainMap = new HashMap<>();
         } else {
             throw new InvalidRailwayNameException("Invalid railway name: " + name);
 
@@ -74,6 +79,14 @@ public final class RailwayManager extends RailwaySystem {
     public void addTrain(Train train) {
         trains.add(train);
         logger.info("Train {} added to railway system.", train.getName());
+
+        
+        trainMap.put(train.getName(), train);
+    }
+
+    
+    public Train getTrainByName(String name) {
+        return trainMap.get(name);
     }
 
     public void showStations() {
