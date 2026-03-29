@@ -111,35 +111,54 @@ public class Main {
 
         logger.info("\n========== HASHSET VALIDATION (NO DUPLICATES) ==========");
 
-        Set<Ticket> tickets = new HashSet<>();
-
         Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
         Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
 
-        tickets.add(t1);
+        t1.addTicket(t1);
         logger.info("Ticket added: {}", t1.getTicketId());
 
-        if (tickets.add(t2)) {
+        if (t1.addTicket(t2)) {
             logger.info("Ticket added: {}", t2.getTicketId());
         } else {
             logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
         }
 
-        logger.info("Total unique tickets: {}", tickets.size());
-        logger.info("[TEST] Ticket uniqueness validation finished");
+        logger.info("Total unique tickets: {}", t1.getTickets().size());
 
 
         logger.info("\n========== COLLECTION TESTS ==========");
+
+        logger.info("\n========== SET (NO DUPLICATES) ==========");
+
+        Ticket t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
+        Ticket t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
+
+        t1.addTicket(t1);
+        logger.info("Ticket added: {}", t1.getTicketId());
+
+        if (t1.addTicket(t2)) {
+            logger.info("Ticket added: {}", t2.getTicketId());
+        } else {
+            logger.warn("Duplicate ticket detected: {}", t2.getTicketId());
+        }
+
+        logger.info("Total unique tickets: {}", t1.getTickets().size());
+
+
+        logger.info("\n========== MAP ==========");
+
         RailwayManager manager = new RailwayManager("Central");
         Train train3 = new Train(1, "Express", locomotive1, station1, route1);
         manager.addTrain(train3);
 
         Train resultant = manager.getTrainByName("Express");
         if (resultant != null) {
-            System.out.println("Train found: " + resultant.getName());
+            logger.info("Train found: {}", resultant.getName());
         } else {
-            System.out.println("Trem not found.");
+            logger.warn("Train not found.");
         }
+
+
 
 
     }

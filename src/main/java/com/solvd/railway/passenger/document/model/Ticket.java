@@ -7,6 +7,9 @@ import com.solvd.railway.train.model.Train;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Ticket extends Document {
 
@@ -17,6 +20,7 @@ public class Ticket extends Document {
     private final Station destination;
     private double price;
     private boolean used;
+    Set<Ticket> tickets = new HashSet<>();
 
     {
         logger.info("New Ticket instance");
@@ -103,6 +107,15 @@ public class Ticket extends Document {
     @Override
     public void markUsed() {
         used = true;
+    }
+
+    public boolean addTicket(Ticket ticket) {
+        return tickets.add(ticket);
+    }
+
+
+    public Set<Ticket> getTickets() {
+        return tickets;
     }
 
 }
