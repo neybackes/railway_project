@@ -16,6 +16,7 @@ import com.solvd.railway.train.model.wagon.model.CargoWagon;
 import com.solvd.railway.train.model.wagon.model.PassengerWagon;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -132,7 +133,9 @@ public class Main {
         logger.info("\n========== MAP ==========");
 
         RailwayManager managerMap = new RailwayManager("Central");
-        Train train3 = new Train(1, "Express", locomotive1, station1, route1);
+
+        Train train3 = new Train(3, "Express", locomotive1, station1, route1);
+
         managerMap.addTrain(train3);
 
         Train resultant = managerMap.getTrainByName("Express");
@@ -180,5 +183,27 @@ public class Main {
             logger.warn("No passenger available for boarding.");
         }
 
+        logger.info("\n========== DEQUE ==========");
+
+        train4.addRecentStation(station1);
+        train4.addRecentStation(station2);
+        train4.addRecentStation(station3);
+
+        Station lastStation = train5.getLastVisitedStation();
+        if (lastStation != null) {
+            logger.info("Last visited station: {}", lastStation.getStationName());
+        } else {
+            logger.warn("No recent stations recorded.");
+        }
+
+        Station removedStation = train1.removeLastVisitedStation();
+        if (removedStation != null) {
+            logger.info("Removed from history: {}", removedStation.getStationName());
+        } else {
+            logger.warn("No station to remove from history.");
+        }
+
+
     }
+
 }

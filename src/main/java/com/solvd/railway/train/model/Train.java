@@ -10,6 +10,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Deque;
+import java.util.ArrayDeque;
+
 public final class Train {
     private static final Logger logger = LogManager.getLogger(Train.class);
     private int trainId;
@@ -18,6 +21,7 @@ public final class Train {
     private Station currentStation;
     private Route route;
     private List<Wagon> wagons;
+    Deque<Station> recentStations = new ArrayDeque<>();
 
     static {
         logger.info("Train Class Initiated");
@@ -116,5 +120,20 @@ public final class Train {
         for (Wagon wagon : wagons) {
             wagon.showInfo();
         }
+    }
+    public void addRecentStation(Station station) {
+        recentStations.addLast(station);
+    }
+
+    public Station getLastVisitedStation() {
+        return recentStations.peekLast();
+    }
+
+    public Station removeLastVisitedStation() {
+        return recentStations.pollLast();
+    }
+
+    public Deque<Station> getRecentStations() {
+        return recentStations;
     }
 }
