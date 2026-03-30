@@ -2,15 +2,13 @@ package com.solvd.railway.train.model.wagon.model;
 
 import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class CargoWagon extends Wagon {
 
     private static final Printer<String> logsPrinter = new Printer<>();
-    private final List<GeneralCargo> cargoList;
+    private final GenericList<GeneralCargo> cargoList;
     private double currentLoad;
 
     {
@@ -19,7 +17,7 @@ public final class CargoWagon extends Wagon {
 
     public CargoWagon(int wagonId, double capacity) {
         super(wagonId, capacity);
-        this.cargoList = new ArrayList<>();
+        this.cargoList = new GenericList<>();
         this.currentLoad = 0;
     }
 
@@ -62,13 +60,13 @@ public final class CargoWagon extends Wagon {
             return;
         }
 
-        for (GeneralCargo cargo : cargoList) {
+        for (GeneralCargo cargo : cargoList.getAll()) {
             logsPrinter.info("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
         }
     }
 
-    public double getCurrentLoad() {
-        return currentLoad;
+    public String getCurrentLoad() {
+        return "Teste" + currentLoad;
     }
 
     public void setCurrentLoad(double currentLoad) {

@@ -1,12 +1,12 @@
 package com.solvd.railway.train.model;
 
+import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.wagon.model.Wagon;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -17,7 +17,7 @@ public final class Train {
     private Locomotive locomotive;
     private Station currentStation;
     private Route route;
-    private List<Wagon> wagons;
+    private GenericList<Wagon> wagons;
     private Deque<Station> recentStations = new ArrayDeque<>();
 
     static {
@@ -34,7 +34,7 @@ public final class Train {
         this.locomotive = locomotive;
         this.currentStation = currentStation;
         this.route = route;
-        this.wagons = new ArrayList<>();
+        this.wagons = new GenericList<>();
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class Train {
     }
 
     public List<Wagon> getWagons() {
-        return wagons;
+        return wagons.getAll();
     }
 
     public void addWagon(Wagon wagon) {
@@ -113,7 +113,7 @@ public final class Train {
             return;
         }
 
-        for (Wagon wagon : wagons) {
+        for (Wagon wagon : wagons.getAll()) {
             wagon.showInfo();
         }
     }

@@ -205,5 +205,28 @@ public class Main {
         } else {
             logsPrinter.warn("No station to remove from history.");
         }
+
+        logsPrinter.title("\n========== STATIONS ==========");
+        railway.showStations();
+        logsPrinter.title("\n========== RAILWAY ==========");
+        railway.showStations();
+        logsPrinter.title("\n========== TRAINS ==========");
+//        train2.addWagon(passengerWagon);
+        train1.showWagons();
+        logsPrinter.title("\n========== PASSENGER WAGON ==========");
+        passengerWagon.boardPassenger(passenger1);
+        passengerWagon.showPassengers();
+        passengerWagon.removePassenger(passenger1);
+
+        logsPrinter.title("\n========== CARGO WAGON ==========");
+
+        cargoWagon.loadCargo(cargo1);
+        cargoWagon.showCargo();
+        cargoWagon.setWagonId(2);
+        cargoWagon.unloadCargo(cargo1);
+        cargoWagon.setCurrentLoad(100);
+        logsPrinter.info(cargoWagon.getCurrentLoad());
+
+
     }
 }

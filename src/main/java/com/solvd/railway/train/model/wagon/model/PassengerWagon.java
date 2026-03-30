@@ -1,16 +1,15 @@
 package com.solvd.railway.train.model.wagon.model;
 
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.person.model.Passenger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class PassengerWagon extends Wagon {
 
     private static final Printer<String> logsPrinter = new Printer<>();
-    private final List<Passenger> passengers;
+    private final GenericList<Passenger> passengers;
+
 
     {
         logsPrinter.info("New PassengerWagon instance");
@@ -18,7 +17,7 @@ public final class PassengerWagon extends Wagon {
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);
-        this.passengers = new ArrayList<>();
+        this.passengers = new GenericList<>();
     }
 
     @Override
@@ -56,7 +55,7 @@ public final class PassengerWagon extends Wagon {
             return;
         }
 
-        for (Passenger passenger : passengers) {
+        for (Passenger passenger : passengers.getAll()) {
             logsPrinter.info("- " + passenger.getName());
         }
     }

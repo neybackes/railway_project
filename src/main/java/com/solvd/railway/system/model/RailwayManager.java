@@ -1,28 +1,28 @@
 package com.solvd.railway.system.model;
 
 import com.solvd.railway.exception.InvalidRailwayNameException;
+import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 public final class RailwayManager extends RailwaySystem {
 
     private static final Printer<String> logsPrinter = new Printer<>();
     private String name;
-    private List<Station> stations;
-    private List<Train> trains;
+    private GenericList<Station> stations;
+    private GenericList<Train> trains;
     private Map<String, Train> trainMap;
 
     public RailwayManager(String name) throws InvalidRailwayNameException {
         if (RailwaySystemContract.isValidName(name)) {
             this.name = name;
-            this.stations = new ArrayList<>();
-            this.trains = new ArrayList<>();
+            this.stations = new GenericList<>();
+            this.trains = new GenericList<>();
             this.trainMap = new HashMap<>();
         } else {
             throw new InvalidRailwayNameException("Invalid railway name: " + name);
@@ -62,11 +62,11 @@ public final class RailwayManager extends RailwaySystem {
     }
 
     public List<Station> getStations() {
-        return stations;
+        return stations.getAll();
     }
 
     public List<Train> getTrains() {
-        return trains;
+        return trains.getAll();
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class RailwayManager extends RailwaySystem {
         }
 
         logsPrinter.info("Stations in " + name + ":");
-        for (Station station : stations) {
+        for (Station station : stations.getAll()) {
             logsPrinter.info("- " + station.getStationName() + " (" + station.getStationCity() + ")");
         }
     }
@@ -105,7 +105,7 @@ public final class RailwayManager extends RailwaySystem {
         }
 
         logsPrinter.info("Trains in " + name + ":");
-        for (Train train : trains) {
+        for (Train train : trains.getAll()) {
             logsPrinter.info("- " + train.getName() + " (ID: " + train.getTrainId() + ")");
         }
     }
