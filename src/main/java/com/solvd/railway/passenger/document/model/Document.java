@@ -19,7 +19,7 @@ public abstract class Document implements DocumentContract {
 
     public abstract String getTicketId();
 
-    public abstract void setTicketId(String ticketId);
+    public abstract String setTicketId(String ticketId);
 
     public abstract double getPrice();
 

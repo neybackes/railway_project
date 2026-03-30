@@ -66,8 +66,9 @@ public class Ticket extends Document {
     }
 
     @Override
-    public void setTicketId(String ticketId) {
+    public String setTicketId(String ticketId) {
         this.ticketId = ticketId;
+        return ticketId;
     }
 
     @Override

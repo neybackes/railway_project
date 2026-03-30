@@ -4,6 +4,7 @@ import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.exception.InvalidRailwayNameException;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
@@ -226,6 +227,22 @@ public class Main {
         cargoWagon.unloadCargo(cargo1);
         cargoWagon.setCurrentLoad(100);
         logsPrinter.info(cargoWagon.getCurrentLoad());
+
+        logsPrinter.title("\n========== GENERICS TEMPORARY ITEMS==========");
+        Holder<Train> trainHolder = new Holder<>(train1);
+        var tempTrain = trainHolder.getItem();
+        logsPrinter.info("Temporary train: " + tempTrain.getName());
+
+        Holder<Ticket> ticketHolder = new Holder<>(ticket1);
+        var tempTicket = ticketHolder.getItem();
+        logsPrinter.info("Temporary ticket: " + tempTicket.getTicketId());
+        tempTicket.setTicketId("3");
+        logsPrinter.warn("Temporary ticket changed to: " + tempTicket.getTicketId());
+        logsPrinter.info("Original ticket object now has ID: " + ticket1.getTicketId());
+        tempTicket.markUsed();
+        logsPrinter.warn("Temporary change of status: " + ticket1.getTicketStatus());
+
+
 
 
     }

@@ -9,7 +9,7 @@ public interface DocumentContract {
 
     String getTicketId();
 
-    void setTicketId(String ticketId);
+    String setTicketId(String ticketId);
 
     double getPrice();
 
