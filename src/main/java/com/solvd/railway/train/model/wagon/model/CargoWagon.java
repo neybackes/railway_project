@@ -1,20 +1,20 @@
 package com.solvd.railway.train.model.wagon.model;
+
 import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.generics.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public final class CargoWagon extends Wagon {
 
-    private static final Logger logger = LogManager.getLogger(CargoWagon.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private final List<GeneralCargo> cargoList;
     private double currentLoad;
 
     {
-        logger.info("New CargoWagon instance");
+        logsPrinter.info("New CargoWagon instance");
     }
 
     public CargoWagon(int wagonId, double capacity) {
@@ -30,14 +30,13 @@ public final class CargoWagon extends Wagon {
 
     @Override
     public void showInfo() {
-        logger.info("Cargo Wagon ID: {}", wagonId);
-        logger.info("Capacity: {} tons", capacity);
-        logger.info("Current Load: {} tons", currentLoad);
-        logger.info("Cargo items: {}", cargoList.size());
+        logsPrinter.info("Cargo Wagon ID: " + wagonId);
+        logsPrinter.info("Capacity: " + capacity + " tons");
+        logsPrinter.info("Current Load: " + currentLoad + " tons");
+        logsPrinter.info("Cargo items: " + cargoList.size());
     }
 
     public void loadCargo(GeneralCargo cargo) throws WagonFullException {
-
         if (currentLoad + cargo.getWeight() > capacity) {
             throw new WagonFullException("Cargo Wagon is full");
         }
@@ -45,28 +44,26 @@ public final class CargoWagon extends Wagon {
         cargoList.add(cargo);
         currentLoad += cargo.getWeight();
 
-        logger.info("Cargo loaded into wagon {}", wagonId);
+        logsPrinter.info("Cargo loaded into wagon " + wagonId);
     }
 
     public void unloadCargo(GeneralCargo cargo) {
-
         if (cargoList.remove(cargo)) {
             currentLoad -= cargo.getWeight();
-            logger.info("Cargo unloaded from wagon {}", wagonId);
+            logsPrinter.info("Cargo unloaded from wagon " + wagonId);
         } else {
-            logger.warn("Cargo not found in wagon {}", wagonId);
+            logsPrinter.warn("Cargo not found in wagon " + wagonId);
         }
     }
 
     public void showCargo() {
-
         if (cargoList.isEmpty()) {
-            logger.warn("No cargo in wagon {}", wagonId);
+            logsPrinter.warn("No cargo in wagon " + wagonId);
             return;
         }
 
         for (GeneralCargo cargo : cargoList) {
-            logger.info("- {} ({} tons)", cargo.getDescription(), cargo.getWeight());
+            logsPrinter.info("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
         }
     }
 
@@ -77,5 +74,4 @@ public final class CargoWagon extends Wagon {
     public void setCurrentLoad(double currentLoad) {
         this.currentLoad = currentLoad;
     }
-
 }

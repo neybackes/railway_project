@@ -1,21 +1,18 @@
 package com.solvd.railway.system.model;
 
+import com.solvd.railway.exception.InvalidRailwayNameException;
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import com.solvd.railway.exception.InvalidRailwayNameException;
 
 public final class RailwayManager extends RailwaySystem {
 
-    private static final Logger logger = LogManager.getLogger(RailwayManager.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private String name;
     private List<Station> stations;
     private List<Train> trains;
@@ -29,7 +26,6 @@ public final class RailwayManager extends RailwaySystem {
             this.trainMap = new HashMap<>();
         } else {
             throw new InvalidRailwayNameException("Invalid railway name: " + name);
-
         }
     }
 
@@ -40,25 +36,27 @@ public final class RailwayManager extends RailwaySystem {
 
     @Override
     public boolean equals(Object compare) {
-        //explicit casting -- needs more research
         RailwayManager compareCast = (RailwayManager) compare;
         if (this.name.equals(compareCast.name)) {
-            logger.info("Atribute {} is equals.", name);
+            logsPrinter.info("Attribute " + name + " is equal.");
             return true;
         } else {
-            logger.warn("Attribute {} is not equal.", name);
+            logsPrinter.warn("Attribute " + name + " is not equal.");
             return false;
         }
     }
 
+    @Override
     public int hashCode() {
         return name.hashCode();
     }
 
+    @Override
     public String getSystemName() {
         return name;
     }
 
+    @Override
     public void setSystemName(String name) {
         this.name = name;
     }
@@ -71,44 +69,44 @@ public final class RailwayManager extends RailwaySystem {
         return trains;
     }
 
+    @Override
     public void addStation(Station station) {
         stations.add(station);
-        logger.info("Station {} added to railway system.", station.getStationName());
+        logsPrinter.info("Station added to railway system: " + station.getStationName());
     }
 
     public void addTrain(Train train) {
         trains.add(train);
-        logger.info("Train {} added to railway system.", train.getName());
-
-        
+        logsPrinter.info("Train added to railway system: " + train.getName());
         trainMap.put(train.getName(), train);
     }
 
-    
     public Train getTrainByName(String name) {
         return trainMap.get(name);
     }
 
+    @Override
     public void showStations() {
         if (stations.isEmpty()) {
-            logger.warn("No stations registered.");
+            logsPrinter.warn("No stations registered.");
         }
 
-        logger.info("Stations in {}:", name);
+        logsPrinter.info("Stations in " + name + ":");
         for (Station station : stations) {
-            logger.info("- {} ({})", station.getStationName(), station.getStationCity());
+            logsPrinter.info("- " + station.getStationName() + " (" + station.getStationCity() + ")");
         }
     }
 
+    @Override
     public void showTrains() {
         if (trains.isEmpty()) {
-            logger.warn("No trains registered.");
+            logsPrinter.warn("No trains registered.");
             return;
         }
 
-        logger.info("Trains in {}:", name);
+        logsPrinter.info("Trains in " + name + ":");
         for (Train train : trains) {
-            logger.info("- {} (ID: {})", train.getName(), train.getTrainId());
+            logsPrinter.info("- " + train.getName() + " (ID: " + train.getTrainId() + ")");
         }
     }
 }

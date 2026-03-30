@@ -1,24 +1,24 @@
 package com.solvd.railway.station.model;
 
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.person.model.Passenger;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import java.util.Queue;
+
 import java.util.LinkedList;
+import java.util.Queue;
 
 public final class Station {
 
-    private static final Logger logger = LogManager.getLogger(Station.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private String name;
     private String city;
     private Queue<Passenger> waitingPassengers = new LinkedList<>();
 
     static {
-        logger.info("Station Class Initiated");
+        logsPrinter.info("Station Class Initiated");
     }
 
     {
-        logger.info("New Station instance");
+        logsPrinter.info("New Station instance");
     }
 
     public Station(String name, String city) {
@@ -32,8 +32,8 @@ public final class Station {
     }
 
     public void showInfo() {
-        logger.info("Station: {}", name);
-        logger.info("City: {}", city);
+        logsPrinter.info("Station: " + name);
+        logsPrinter.info("City: " + city);
     }
 
     public String getStationName() {
@@ -67,5 +67,4 @@ public final class Station {
     public Queue<Passenger> getWaitingPassengers() {
         return waitingPassengers;
     }
-
 }

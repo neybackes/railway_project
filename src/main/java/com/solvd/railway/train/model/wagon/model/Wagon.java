@@ -1,16 +1,15 @@
 package com.solvd.railway.train.model.wagon.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.railway.generics.Printer;
 
 public abstract class Wagon implements WagonContract {
 
-    private static final Logger logger = LogManager.getLogger(Wagon.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     protected int wagonId;
     protected double capacity;
 
     static {
-        logger.info("Wagon Class Initiated");
+        logsPrinter.info("Wagon Class Initiated");
     }
 
     public Wagon(int wagonId, double capacity) {
@@ -41,7 +40,6 @@ public abstract class Wagon implements WagonContract {
         return (int) capacity;
     }
 
-    //overloading
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
@@ -49,5 +47,4 @@ public abstract class Wagon implements WagonContract {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
-
 }

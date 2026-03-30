@@ -1,19 +1,16 @@
 package com.solvd.railway.passenger.person.model;
 
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Station;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public
+public abstract class Person implements PersonContract {
 
-abstract class Person implements PersonContract {
-
-    private static final Logger logger = LogManager.getLogger(Person.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private String name;
     private Station destination;
 
     static {
-        logger.info("Person Class Initiated");
+        logsPrinter.info("Person Class Initiated");
     }
 
     @Override
@@ -26,5 +23,4 @@ abstract class Person implements PersonContract {
     public abstract void setName(String name);
 
     public abstract Station getDestination();
-
 }
