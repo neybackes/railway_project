@@ -1,21 +1,20 @@
 package com.solvd.railway.station.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.railway.generics.Printer;
 
 public final class Route {
 
-    private static final Logger logger = LogManager.getLogger(Route.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private Station origin;
     private Station destination;
     private double distance;
 
     static {
-        logger.info("Route Class Initiated");
+        logsPrinter.info("Route Class Initiated");
     }
 
     {
-        logger.info("New Route instance");
+        logsPrinter.info("New Route instance");
     }
 
     public Route(Station origin, Station destination, double distance) {
@@ -30,10 +29,10 @@ public final class Route {
     }
 
     public void showInfo() {
-        logger.info("Route:");
-        logger.info("Origin: {}", origin.getStationName());
-        logger.info("Destination: {}", destination.getStationName());
-        logger.info("Distance: {} km", distance);
+        logsPrinter.info("Route:");
+        logsPrinter.info("Origin: " + origin.getStationName());
+        logsPrinter.info("Destination: " + destination.getStationName());
+        logsPrinter.info("Distance: " + distance + " km");
     }
 
     public String getOrigin() {

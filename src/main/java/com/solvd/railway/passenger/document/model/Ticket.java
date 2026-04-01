@@ -1,25 +1,27 @@
 package com.solvd.railway.passenger.document.model;
 
 import com.solvd.railway.exception.InvalidBoardingException;
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.person.model.Passenger;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.train.model.Train;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+import java.util.HashSet;
+import java.util.Set;
 
 public class Ticket extends Document {
 
-    private static final Logger logger = LogManager.getLogger(Ticket.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
     private String ticketId;
     private final Passenger passenger;
     private final Station origin;
     private final Station destination;
     private double price;
     private boolean used;
+    private Set<Ticket> tickets = new HashSet<>();
 
     {
-        logger.info("New Ticket instance");
+        logsPrinter.info("New Ticket instance");
     }
 
     public Ticket(String ticketId, Passenger passenger, Station origin, Station destination, double price) {
@@ -38,12 +40,12 @@ public class Ticket extends Document {
 
     @Override
     public void showInfo() {
-        logger.info("Ticket ID: {}", ticketId);
-        logger.info("Passenger: {}", passenger.getName());
-        logger.info("Origin: {}", origin.getStationName());
-        logger.info("Destination: {}", destination.getStationName());
-        logger.info("Price: ${}", price);
-        logger.info("Used: {}", used);
+        logsPrinter.info("Ticket ID: " + ticketId);
+        logsPrinter.info("Passenger: " + passenger.getName());
+        logsPrinter.info("Origin: " + origin.getStationName());
+        logsPrinter.info("Destination: " + destination.getStationName());
+        logsPrinter.info("Price: $" + price);
+        logsPrinter.info("Used: " + used);
     }
 
     @Override
@@ -64,8 +66,9 @@ public class Ticket extends Document {
     }
 
     @Override
-    public void setTicketId(String ticketId) {
+    public String setTicketId(String ticketId) {
         this.ticketId = ticketId;
+        return ticketId;
     }
 
     @Override
@@ -88,7 +91,6 @@ public class Ticket extends Document {
         this.price = price;
     }
 
-
     @Override
     public boolean validateBoarding(Train train) throws InvalidBoardingException {
         if (used) {
@@ -105,4 +107,11 @@ public class Ticket extends Document {
         used = true;
     }
 
+    public boolean addTicket(Ticket ticket) {
+        return tickets.add(ticket);
+    }
+
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
 }

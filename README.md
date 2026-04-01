@@ -49,6 +49,19 @@ Simple Java study project modeling a railway system.
   - Add Log4j to the project and replace System outs
     - Log4j added into lib folder
 
+### Exceptions. Logger
+    
+ - Use 5 different collections types in your homework
+   - SET   - HashSet
+   - MAP   - HashMap
+   - LIST  - ArrayList
+   - QUEUE - LinkedList
+   - DEQUE - ArrayDeque
+ - Add new /Refactor existing classes to have 3 generic classes in your project
+   -  Printer<T>: a generic class used to print or log messages.
+   -  Holder<T>: a generic wrapper class that stores and returns an object of any type.
+   -  GenericList<T>: a generic class that manages a list of elements of any type using List<T>
+
 ### Java Project Structure Flow
 
 ```text

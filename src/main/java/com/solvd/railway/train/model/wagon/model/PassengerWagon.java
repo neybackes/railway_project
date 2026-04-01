@@ -1,26 +1,23 @@
 package com.solvd.railway.train.model.wagon.model;
 
-import com.solvd.railway.passenger.person.model.Passenger;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.generics.GenericList;
+import com.solvd.railway.generics.Printer;
+import com.solvd.railway.passenger.person.model.Passenger;
 
 public final class PassengerWagon extends Wagon {
 
-    private static final Logger logger = LogManager.getLogger(PassengerWagon.class);
-    private final List<Passenger> passengers;
+    private static final Printer<String> logsPrinter = new Printer<>();
+    private final GenericList<Passenger> passengers;
+
 
     {
-        logger.info("New PassengerWagon instance");
+        logsPrinter.info("New PassengerWagon instance");
     }
 
     public PassengerWagon(int wagonId, int capacity) {
         super(wagonId, capacity);
-        this.passengers = new ArrayList<>();
+        this.passengers = new GenericList<>();
     }
 
     @Override
@@ -30,40 +27,36 @@ public final class PassengerWagon extends Wagon {
 
     @Override
     public void showInfo() {
-        logger.info("Passenger Wagon ID: {}", wagonId);
-        logger.info("Capacity: {}", capacity);
-        logger.info("Passengers onboard: {}", passengers.size());
+        logsPrinter.info("Passenger Wagon ID: " + wagonId);
+        logsPrinter.info("Capacity: " + capacity);
+        logsPrinter.info("Passengers onboard: " + passengers.size());
     }
 
     public void boardPassenger(Passenger passenger) throws WagonFullException {
-
         if (passengers.size() >= capacity) {
             throw new WagonFullException("Passenger Wagon is full");
-
         }
+
         passengers.add(passenger);
-        logger.info("{} boarded wagon {}", passenger.getName(), wagonId);
+        logsPrinter.info(passenger.getName() + " boarded wagon " + wagonId);
     }
 
     public void removePassenger(Passenger passenger) {
-
         if (passengers.remove(passenger)) {
-            logger.info("{} left wagon {}", passenger.getName(), wagonId);
+            logsPrinter.info(passenger.getName() + " left wagon " + wagonId);
         } else {
-            logger.warn("{} is not in wagon {}", passenger.getName(), wagonId);
+            logsPrinter.warn(passenger.getName() + " is not in wagon " + wagonId);
         }
     }
 
     public void showPassengers() {
-
         if (passengers.isEmpty()) {
-            logger.warn("No passengers in wagon {}", wagonId);
+            logsPrinter.warn("No passengers in wagon " + wagonId);
             return;
         }
 
-        for (Passenger passenger : passengers) {
-            logger.info("- {}", passenger.getName());
+        for (Passenger passenger : passengers.getAll()) {
+            logsPrinter.info("- " + passenger.getName());
         }
     }
-
 }
