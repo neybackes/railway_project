@@ -49,7 +49,7 @@ Simple Java study project modeling a railway system.
   - Add Log4j to the project and replace System outs
     - Log4j added into lib folder
 
-### Exceptions. Logger
+### Generics. Collections
     
  - Use 5 different collections types in your homework
    - SET   - HashSet
@@ -62,6 +62,12 @@ Simple Java study project modeling a railway system.
    -  Holder<T>: a generic wrapper class that stores and returns an object of any type.
    -  GenericList<T>: a generic class that manages a list of elements of any type using List<T>
 
+### Maven
+
+ - Migrate your projects to maven build tool
+ - Add compiler and surefire plugins
+   - Migrated the project to Maven and added the compiler and surefire plugins.
+  
 ### Java Project Structure Flow
 
 ```text
@@ -118,5 +124,4 @@ Code layout:
 - `feature/<short-name>`: new features.
 - `refact/<short-name>`: refactoring
 
-## Notes
-No external dependencies.
+
