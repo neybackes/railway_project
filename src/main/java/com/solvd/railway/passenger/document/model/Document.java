@@ -1,16 +1,15 @@
 package com.solvd.railway.passenger.document.model;
 
 import com.solvd.railway.exception.InvalidBoardingException;
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.train.model.Train;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class Document implements DocumentContract {
 
-    private static final Logger logger = LogManager.getLogger(Document.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
 
     static {
-        logger.info("Document Class Initiated");
+        logsPrinter.info("Document Class Initiated");
     }
 
     @Override
@@ -20,7 +19,7 @@ public abstract class Document implements DocumentContract {
 
     public abstract String getTicketId();
 
-    public abstract void setTicketId(String ticketId);
+    public abstract String setTicketId(String ticketId);
 
     public abstract double getPrice();
 
@@ -33,6 +32,4 @@ public abstract class Document implements DocumentContract {
     public abstract boolean validateBoarding(Train train) throws InvalidBoardingException;
 
     public abstract void markUsed();
-
-
 }

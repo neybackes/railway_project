@@ -1,15 +1,14 @@
 package com.solvd.railway.cargo.model;
 
+import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Station;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public abstract class Cargo implements CargoContract {
 
-    private static final Logger logger = LogManager.getLogger(Cargo.class);
+    private static final Printer<String> logsPrinter = new Printer<>();
 
     static {
-        logger.info("Cargo Class Initiated");
+        logsPrinter.info("Cargo Class Initiated");
     }
 
     public abstract void showInfo();
