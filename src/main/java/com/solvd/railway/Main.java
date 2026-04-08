@@ -243,6 +243,13 @@ public class Main {
         logsPrinter.warn("Temporary change of status: " + ticket1.getTicketStatus());
 
 
+        logsPrinter.title("\n========== ENUM ==========");
+
+        logsPrinter.title("\n========== TrainStatus ==========");
+
+        train1.moveTo(station2);
+
+
 
 
     }

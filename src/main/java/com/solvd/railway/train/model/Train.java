@@ -1,5 +1,6 @@
 package com.solvd.railway.train.model;
 
+import com.solvd.railway.enums.TrainStatus;
 import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.station.model.Route;
@@ -19,6 +20,7 @@ public final class Train {
     private Route route;
     private GenericList<Wagon> wagons;
     private Deque<Station> recentStations = new ArrayDeque<>();
+    private TrainStatus status;
 
     static {
         logsPrinter.info("Train Class Initiated");
@@ -35,6 +37,7 @@ public final class Train {
         this.currentStation = currentStation;
         this.route = route;
         this.wagons = new GenericList<>();
+        this.status = TrainStatus.STOPPED;
     }
 
     @Override
@@ -97,10 +100,12 @@ public final class Train {
             logsPrinter.warn("Train " + name + " is already at " + newStation.getStationName());
             return;
         }
+        updateStatus(TrainStatus.RUNNING);
 
         logsPrinter.info("Train " + name + " leaving " + currentStation.getStationName());
         currentStation = newStation;
         logsPrinter.info("Train " + name + " arrived at " + currentStation.getStationName());
+        updateStatus(TrainStatus.STOPPED);
     }
 
     public void showCurrentStation() {
@@ -132,5 +137,15 @@ public final class Train {
 
     public Deque<Station> getRecentStations() {
         return recentStations;
+    }
+
+    private void updateStatus(TrainStatus newStatus) {
+        TrainStatus oldStatus = this.status;
+
+        this.status = newStatus;
+
+        logsPrinter.info(
+                String.format("Train " + name + " changed to " + newStatus + ". Older status was " + oldStatus)
+        );
     }
 }
