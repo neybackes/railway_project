@@ -1,5 +1,6 @@
 package com.solvd.railway.train.model.wagon.model;
 
+import com.solvd.railway.enums.WagonType;
 import com.solvd.railway.generics.Printer;
 
 public abstract class Wagon implements WagonContract {
@@ -21,6 +22,8 @@ public abstract class Wagon implements WagonContract {
     public String toString() {
         return "Wagon{" + "wagonId=" + wagonId + ", capacity=" + capacity + '}';
     }
+
+    public abstract WagonType getType();
 
     public abstract void showInfo();
 

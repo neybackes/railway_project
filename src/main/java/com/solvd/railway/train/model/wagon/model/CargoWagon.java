@@ -1,6 +1,7 @@
 package com.solvd.railway.train.model.wagon.model;
 
 import com.solvd.railway.cargo.model.GeneralCargo;
+import com.solvd.railway.enums.WagonType;
 import com.solvd.railway.exception.WagonFullException;
 import com.solvd.railway.generics.GenericList;
 import com.solvd.railway.generics.Printer;
@@ -32,6 +33,11 @@ public final class CargoWagon extends Wagon {
         logsPrinter.info("Capacity: " + capacity + " tons");
         logsPrinter.info("Current Load: " + currentLoad + " tons");
         logsPrinter.info("Cargo items: " + cargoList.size());
+    }
+
+     @Override
+    public WagonType getType() {
+        return WagonType.CARGO;
     }
 
     public void loadCargo(GeneralCargo cargo) throws WagonFullException {

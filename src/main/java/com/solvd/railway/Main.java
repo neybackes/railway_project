@@ -249,9 +249,15 @@ public class Main {
         train1.moveTo(station2);
 
         logsPrinter.title("\n========== LogLevel ==========" );
+
         logsPrinter.info("INFORMATION EXAMPLE " + train1.getName());
         logsPrinter.warn("WARNING EXAMPLE " + trainHolder.getItem());
         logsPrinter.error("ERROR EXAMPLE " + train1.getName());
+
+        logsPrinter.title("\n========== WagonType ==========" );
+
+        logsPrinter.info("CargoWagon Type: " + cargoWagon.getType());
+        logsPrinter.info("PassengerWagon Type:  " + passengerWagon.getType());
 
 
     }
