@@ -15,6 +15,10 @@ import com.solvd.railway.train.model.Locomotive;
 import com.solvd.railway.train.model.Train;
 import com.solvd.railway.train.model.wagon.model.CargoWagon;
 import com.solvd.railway.train.model.wagon.model.PassengerWagon;
+import com.solvd.railway.utils.KeywordCounter;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class Main {
@@ -258,6 +262,20 @@ public class Main {
 
         logsPrinter.info("CargoWagon Type: " + cargoWagon.getType());
         logsPrinter.info("PassengerWagon Type:  " + passengerWagon.getType());
+
+        logsPrinter.title("\n========== StringUtils and FileUtils ==========" );
+
+        File inputFile = new File("src/main/resources/article.txt");
+        File outputFile = new File("src/main/resources/result.txt");
+
+        KeywordCounter keywordCounter = new KeywordCounter();
+
+        try {
+            keywordCounter.countKeywords(inputFile, outputFile);
+            logsPrinter.info("Finished counting keywords.");
+        } catch (IOException e) {
+            logsPrinter.error("Error: " + e.getMessage());
+        }
 
 
     }
