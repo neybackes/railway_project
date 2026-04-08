@@ -67,7 +67,10 @@ Simple Java study project modeling a railway system.
  - Migrate your projects to maven build tool
  - Add compiler and surefire plugins
    - Migrated the project to Maven and added the compiler and surefire plugins.
-  
+
+## GIT 
+ - Upload your project to GitHub with proper files scope ☑
+
 ### Java Project Structure Flow
 
 ```text
