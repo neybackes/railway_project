@@ -5,6 +5,7 @@ import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.exception.InvalidRailwayNameException;
 import com.solvd.railway.exception.WagonFullException;
 import com.solvd.railway.functional.Show;
+import com.solvd.railway.functional.Validate;
 import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
@@ -285,6 +286,15 @@ public class Main {
 
         showTrainName.execute(train1);
         showStationName.execute(station3);
+
+        logsPrinter.title("\n========== Lambda Validate ==========");
+
+        Validate<Train> hasWagons = train -> !train.getWagons().isEmpty();
+        logsPrinter.info("Train has wagons: " + hasWagons.test(train1));
+
+        Validate<Ticket> isTicketAvailable = ticket -> !ticket.getTicketStatus();
+        logsPrinter.info("Ticket is used: " + isTicketAvailable.test(ticket2));
+
 
 
     }
