@@ -4,6 +4,7 @@ import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.exception.InvalidRailwayNameException;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.functional.Show;
 import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
@@ -276,6 +277,14 @@ public class Main {
         } catch (IOException e) {
             logsPrinter.error("Error: " + e.getMessage());
         }
+
+        logsPrinter.title("\n========== Lambda Show ==========");
+
+        Show<Train> showTrainName = train -> logsPrinter.info("Train " + train.getName());
+        Show<Station> showStationName = station -> logsPrinter.info("Station " + station.getStationName());
+
+        showTrainName.execute(train1);
+        showStationName.execute(station3);
 
 
     }
