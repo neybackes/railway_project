@@ -71,6 +71,17 @@ Simple Java study project modeling a railway system.
 ## GIT 
  - Upload your project to GitHub with proper files scope ☑
 
+## Enums. StringUtils and FileUtils
+ - Add 3 enums to the project
+   - LogLevel
+   - TrainStatus
+   - WagoType
+ - Count amount of special words inside the file. 
+   as the result provide new file with information implement using StringUtils and FileUtils. 
+   output file shouldn't clean up previous results use any article that you want
+   - KeywordCounter - utils
+   - Keyword - enum
+
 ### Java Project Structure Flow
 
 ```text

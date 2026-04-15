@@ -15,7 +15,10 @@ import com.solvd.railway.train.model.Locomotive;
 import com.solvd.railway.train.model.Train;
 import com.solvd.railway.train.model.wagon.model.CargoWagon;
 import com.solvd.railway.train.model.wagon.model.PassengerWagon;
+import com.solvd.railway.utils.KeywordCounter;
 
+import java.io.File;
+import java.io.IOException;
 
 
 public class Main {
@@ -24,9 +27,9 @@ public class Main {
 
         Printer<String> logsPrinter = new Printer<>();
 
-        logsPrinter.title("\n========== PRINTER GENERICS ==========");
+        logsPrinter.title("\n========== PRINTER GENERICS ==========" );
 
-        logsPrinter.title("========== INSTANTIATING OBJECTS ==========");
+        logsPrinter.title("========== INSTANTIATING OBJECTS ==========" );
 
         RailwayManager railway, railway2;
         PassengerWagon passengerWagon;
@@ -37,19 +40,19 @@ public class Main {
         Train train1, train2;
         Ticket ticket1, ticket2;
 
-        logsPrinter.title("========== InvalidRailwayNameException ==========");
+        logsPrinter.title("========== InvalidRailwayNameException ==========" );
         try {
-            railway = new RailwayManager("");
-            railway2 = new RailwayManager("");
+            railway = new RailwayManager("" );
+            railway2 = new RailwayManager("" );
         } catch (InvalidRailwayNameException ex) {
             logsPrinter.error("Invalid Name: " + ex.getMessage());
-            railway = new RailwayManager("Brazil Railways");
-            railway2 = new RailwayManager("Brazil Railway");
+            railway = new RailwayManager("Brazil Railways" );
+            railway2 = new RailwayManager("Brazil Railway" );
         }
 
-        station1 = new Station("Central Station ", "Curitiba");
-        station2 = new Station("North Station ", "Londrina");
-        station3 = new Station("South Station ", "Maringa");
+        station1 = new Station("Central Station ", "Curitiba" );
+        station2 = new Station("North Station ", "Londrina" );
+        station3 = new Station("South Station ", "Maringa" );
         route1 = new Route(station1, station2, 380);
         route2 = new Route(station2, station3, 300);
         locomotive1 = new Locomotive("Passenger P01", 120);
@@ -73,7 +76,7 @@ public class Main {
         railway.addTrain(train1);
         railway.addTrain(train2);
 
-        logsPrinter.title("========== WagonFullException ==========");
+        logsPrinter.title("========== WagonFullException ==========" );
         try {
             passengerWagon.boardPassenger(passenger1);
             cargoWagon.loadCargo(cargo1);
@@ -85,7 +88,7 @@ public class Main {
             passengerWagon.boardPassenger(passenger2);
         }
 
-        logsPrinter.title("========== InvalidBoardingException ==========");
+        logsPrinter.title("========== InvalidBoardingException ==========" );
         try {
             ticket1.markUsed();
             ticket1.validateBoarding(train1);
@@ -93,25 +96,25 @@ public class Main {
             logsPrinter.error("Boarding denied: " + ex.getMessage());
         }
 
-        logsPrinter.title("====================");
+        logsPrinter.title("====================" );
 
-        logsPrinter.title("========== HASHCODE TEST ==========");
+        logsPrinter.title("========== HASHCODE TEST ==========" );
         logsPrinter.info("Railway hashCode: " + railway.hashCode());
         logsPrinter.info("Train hashCode: " + train1.hashCode());
         logsPrinter.info("Cargo hashCode: " + cargo1.hashCode());
 
-        logsPrinter.title("\n========== OBJECT INFORMATION ==========");
-        logsPrinter.info("Railway object:");
+        logsPrinter.title("\n========== OBJECT INFORMATION ==========" );
+        logsPrinter.info("Railway object:" );
         logsPrinter.info(railway.toString());
 
-        logsPrinter.title("\n========== EQUALS TEST ==========");
-        logsPrinter.info("Comparing Ticket objects (ticket1 vs ticket2):");
+        logsPrinter.title("\n========== EQUALS TEST ==========" );
+        logsPrinter.info("Comparing Ticket objects (ticket1 vs ticket2):" );
         logsPrinter.info("Result: " + ticket1.equals(ticket2));
 
-        logsPrinter.info("Comparing Railway objects (railway vs railway2):");
+        logsPrinter.info("Comparing Railway objects (railway vs railway2):" );
         logsPrinter.info("Result: " + railway.equals(railway2));
 
-        logsPrinter.title("\n========== COLLECTION TESTS ==========");
+        logsPrinter.title("\n========== COLLECTION TESTS ==========" );
 
         RailwayManager managerMap, managerList;
         Train train3, train4, train5, resultant;
@@ -119,7 +122,7 @@ public class Main {
         Ticket t1, t2;
         Station lastStation, removedStation;
 
-        logsPrinter.title("\n========== SET (NO DUPLICATES) ==========");
+        logsPrinter.title("\n========== SET (NO DUPLICATES) ==========" );
 
         t1 = new Ticket("T001", passenger1, station1, station2, 120.0);
         t2 = new Ticket("T001", passenger2, station1, station2, 130.0);
@@ -135,23 +138,23 @@ public class Main {
 
         logsPrinter.info("Total unique tickets: " + t1.getTickets().size());
 
-        logsPrinter.title("\n========== MAP ==========");
+        logsPrinter.title("\n========== MAP ==========" );
 
-        managerMap = new RailwayManager("Central");
+        managerMap = new RailwayManager("Central" );
         train3 = new Train(3, "Express", locomotive1, station1, route1);
 
         managerMap.addTrain(train3);
 
-        resultant = managerMap.getTrainByName("Express");
+        resultant = managerMap.getTrainByName("Express" );
         if (resultant != null) {
             logsPrinter.info("Train found: " + resultant.getName());
         } else {
-            logsPrinter.warn("Train not found.");
+            logsPrinter.warn("Train not found." );
         }
 
-        logsPrinter.title("\n========== LIST ==========");
+        logsPrinter.title("\n========== LIST ==========" );
 
-        managerList = new RailwayManager("Central");
+        managerList = new RailwayManager("Central" );
         train4 = new Train(1, "Express", locomotive1, station1, route1);
         train5 = new Train(2, "Regional", locomotive2, station2, route2);
 
@@ -159,7 +162,7 @@ public class Main {
         managerList.addTrain(train5);
 
         if (managerList.getTrains().isEmpty()) {
-            logsPrinter.warn("No trains in the list.");
+            logsPrinter.warn("No trains in the list." );
         } else {
             for (Train train : managerList.getTrains()) {
                 logsPrinter.info("Train in list: " + train.getName());
@@ -168,7 +171,7 @@ public class Main {
 
         logsPrinter.info("First train in list: " + managerList.getTrains().get(0).getName());
 
-        logsPrinter.title("\n========== QUEUE ==========");
+        logsPrinter.title("\n========== QUEUE ==========" );
 
         station1.addPassengerToQueue(passenger1);
         station1.addPassengerToQueue(passenger2);
@@ -177,17 +180,17 @@ public class Main {
         if (nextPassenger != null) {
             logsPrinter.info("Next passenger in queue: " + nextPassenger.getName());
         } else {
-            logsPrinter.warn("No passengers in queue.");
+            logsPrinter.warn("No passengers in queue." );
         }
 
         boardedPassenger = station1.boardNextPassenger();
         if (boardedPassenger != null) {
             logsPrinter.info("Passenger boarded: " + boardedPassenger.getName());
         } else {
-            logsPrinter.warn("No passenger available for boarding.");
+            logsPrinter.warn("No passenger available for boarding." );
         }
 
-        logsPrinter.title("\n========== DEQUE ==========");
+        logsPrinter.title("\n========== DEQUE ==========" );
 
         train4.addRecentStation(station1);
         train4.addRecentStation(station2);
@@ -197,29 +200,29 @@ public class Main {
         if (lastStation != null) {
             logsPrinter.info("Last visited station: " + lastStation.getStationName());
         } else {
-            logsPrinter.warn("No recent stations recorded.");
+            logsPrinter.warn("No recent stations recorded." );
         }
 
         removedStation = train4.removeLastVisitedStation();
         if (removedStation != null) {
             logsPrinter.info("Removed from history: " + removedStation.getStationName());
         } else {
-            logsPrinter.warn("No station to remove from history.");
+            logsPrinter.warn("No station to remove from history." );
         }
 
-        logsPrinter.title("\n========== STATIONS ==========");
+        logsPrinter.title("\n========== STATIONS ==========" );
         railway.showStations();
-        logsPrinter.title("\n========== RAILWAY ==========");
+        logsPrinter.title("\n========== RAILWAY ==========" );
         railway.showStations();
-        logsPrinter.title("\n========== TRAINS ==========");
+        logsPrinter.title("\n========== TRAINS ==========" );
 //        train2.addWagon(passengerWagon);
         train1.showWagons();
-        logsPrinter.title("\n========== PASSENGER WAGON ==========");
+        logsPrinter.title("\n========== PASSENGER WAGON ==========" );
         passengerWagon.boardPassenger(passenger1);
         passengerWagon.showPassengers();
         passengerWagon.removePassenger(passenger1);
 
-        logsPrinter.title("\n========== CARGO WAGON ==========");
+        logsPrinter.title("\n========== CARGO WAGON ==========" );
 
         cargoWagon.loadCargo(cargo1);
         cargoWagon.showCargo();
@@ -228,7 +231,7 @@ public class Main {
         cargoWagon.setCurrentLoad(100);
         logsPrinter.info(cargoWagon.getCurrentLoad());
 
-        logsPrinter.title("\n========== GENERICS TEMPORARY ITEMS==========");
+        logsPrinter.title("\n========== GENERICS TEMPORARY ITEMS==========" );
         Holder<Train> trainHolder = new Holder<>(train1);
         var tempTrain = trainHolder.getItem();
         logsPrinter.info("Temporary train: " + tempTrain.getName());
@@ -236,13 +239,43 @@ public class Main {
         Holder<Ticket> ticketHolder = new Holder<>(ticket1);
         var tempTicket = ticketHolder.getItem();
         logsPrinter.info("Temporary ticket: " + tempTicket.getTicketId());
-        tempTicket.setTicketId("3");
+        tempTicket.setTicketId("3" );
         logsPrinter.warn("Temporary ticket changed to: " + tempTicket.getTicketId());
         logsPrinter.info("Original ticket object now has ID: " + ticket1.getTicketId());
         tempTicket.markUsed();
         logsPrinter.warn("Temporary change of status: " + ticket1.getTicketStatus());
 
 
+        logsPrinter.title("\n========== ENUM ==========" );
+
+        logsPrinter.title("\n========== TrainStatus ==========" );
+
+        train1.moveTo(station2);
+
+        logsPrinter.title("\n========== LogLevel ==========" );
+
+        logsPrinter.info("INFORMATION EXAMPLE " + train1.getName());
+        logsPrinter.warn("WARNING EXAMPLE " + trainHolder.getItem());
+        logsPrinter.error("ERROR EXAMPLE " + train1.getName());
+
+        logsPrinter.title("\n========== WagonType ==========" );
+
+        logsPrinter.info("CargoWagon Type: " + cargoWagon.getType());
+        logsPrinter.info("PassengerWagon Type:  " + passengerWagon.getType());
+
+        logsPrinter.title("\n========== StringUtils and FileUtils ==========" );
+
+        File inputFile = new File("src/main/resources/article.txt");
+        File outputFile = new File("src/main/resources/result.txt");
+
+        KeywordCounter keywordCounter = new KeywordCounter();
+
+        try {
+            keywordCounter.countKeywords(inputFile, outputFile);
+            logsPrinter.info("Finished counting keywords.");
+        } catch (IOException e) {
+            logsPrinter.error("Error: " + e.getMessage());
+        }
 
 
     }
