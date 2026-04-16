@@ -56,12 +56,11 @@ public final class PassengerWagon extends Wagon {
 
     public void showPassengers() {
         if (passengers.isEmpty()) {
-            logsPrinter.warn("No passengers in wagon " + wagonId);
+            logsPrinter.warn("No passengers in wagon.");
             return;
         }
 
-        for (Passenger passenger : passengers.getAll()) {
-            logsPrinter.info("- " + passenger.getName());
-        }
+        passengers.getAll().forEach(passenger ->
+                logsPrinter.info("- " + passenger.getName()));
     }
 }

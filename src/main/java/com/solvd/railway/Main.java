@@ -166,12 +166,13 @@ public class Main {
         managerList.addTrain(train5);
 
         if (managerList.getTrains().isEmpty()) {
-            logsPrinter.warn("No trains in the list." );
+            logsPrinter.warn("No trains in the list.");
         } else {
-            for (Train train : managerList.getTrains()) {
-                logsPrinter.info("Train in list: " + train.getName());
-            }
+            managerList.getTrains()
+                    .forEach(train -> logsPrinter.info("Train in list: " + train.getName()));
+
         }
+
 
         logsPrinter.info("First train in list: " + managerList.getTrains().get(0).getName());
 
@@ -306,7 +307,7 @@ public class Main {
         List<Ticket> tickets = List.of(ticket1, ticket2, ticket3, ticket4, ticket5);
 
 
-        Validate<Ticket> isExpensive = ticket -> ticket.getPrice() > 100;
+        Validate<Ticket> isExpensive = ticket -> ticket.getPrice() > 120;
 
         Mapper<Ticket, Double> toPrice = Ticket::getPrice;
 
@@ -327,6 +328,11 @@ public class Main {
 
         logsPrinter.info("\nExpensive prices:");
         expensivePrices.forEach(show::execute);
+
+
+
+
+
 
 
 
