@@ -82,6 +82,13 @@ Simple Java study project modeling a railway system.
    - KeywordCounter - utils
    - Keyword - enum
 
+## Stream. Lambda
+ - Create your own 3 functional interfaces and use lambda functions based on them in your project
+   - Mapper
+   - Show
+   - Validate
+ - Replace all iterations in project with collection streaming instead ☑
+
 ### Java Project Structure Flow
 
 ```text
