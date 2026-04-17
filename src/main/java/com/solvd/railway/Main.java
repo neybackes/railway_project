@@ -4,6 +4,9 @@ import com.solvd.railway.cargo.model.GeneralCargo;
 import com.solvd.railway.exception.InvalidBoardingException;
 import com.solvd.railway.exception.InvalidRailwayNameException;
 import com.solvd.railway.exception.WagonFullException;
+import com.solvd.railway.functional.Mapper;
+import com.solvd.railway.functional.Show;
+import com.solvd.railway.functional.Validate;
 import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
@@ -19,6 +22,7 @@ import com.solvd.railway.utils.KeywordCounter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 public class Main {
@@ -38,7 +42,7 @@ public class Main {
         Route route1, route2;
         Locomotive locomotive1, locomotive2;
         Train train1, train2;
-        Ticket ticket1, ticket2;
+        Ticket ticket1, ticket2, ticket3, ticket4, ticket5;
 
         logsPrinter.title("========== InvalidRailwayNameException ==========" );
         try {
@@ -162,12 +166,13 @@ public class Main {
         managerList.addTrain(train5);
 
         if (managerList.getTrains().isEmpty()) {
-            logsPrinter.warn("No trains in the list." );
+            logsPrinter.warn("No trains in the list.");
         } else {
-            for (Train train : managerList.getTrains()) {
-                logsPrinter.info("Train in list: " + train.getName());
-            }
+            managerList.getTrains()
+                    .forEach(train -> logsPrinter.info("Train in list: " + train.getName()));
+
         }
+
 
         logsPrinter.info("First train in list: " + managerList.getTrains().get(0).getName());
 
@@ -276,6 +281,65 @@ public class Main {
         } catch (IOException e) {
             logsPrinter.error("Error: " + e.getMessage());
         }
+
+        logsPrinter.title("\n========== Lambda Show ==========");
+
+        Show<Train> showTrainName = train -> logsPrinter.info("Train " + train.getName());
+        Show<Station> showStationName = station -> logsPrinter.info("Station " + station.getStationName());
+
+        showTrainName.execute(train1);
+        showStationName.execute(station3);
+
+        logsPrinter.title("\n========== Lambda Validate ==========");
+
+        Validate<Train> hasWagons = train -> !train.getWagons().isEmpty();
+        logsPrinter.info("Train has wagons: " + hasWagons.test(train1));
+
+        Validate<Ticket> isTicketAvailable = ticket -> !ticket.getTicketStatus();
+        logsPrinter.info("Ticket is used: " + isTicketAvailable.test(ticket2));
+
+        logsPrinter.title("\n========== Lambda mapper ==========");
+
+        ticket3 = new Ticket("T002", passenger2, station1, station2, 120.0);
+        ticket4 = new Ticket("T002", passenger2, station1, station2, 110.0);
+        ticket5 = new Ticket("T002", passenger2, station1, station2, 100.0);
+
+        List<Ticket> tickets = List.of(ticket1, ticket2, ticket3, ticket4, ticket5);
+
+
+        Validate<Ticket> isExpensive = ticket -> ticket.getPrice() > 120;
+
+        Mapper<Ticket, Double> toPrice = Ticket::getPrice;
+
+        Show<Double> show = value -> logsPrinter.info(String.valueOf(value));
+
+
+        List<Double> prices = tickets.stream()
+                .map(toPrice::map)
+                .toList();
+
+        List<Double> expensivePrices = tickets.stream()
+                .filter(isExpensive::test)
+                .map(toPrice::map)
+                .toList();
+
+        logsPrinter.info("All prices:");
+        prices.forEach(show::execute);
+
+        logsPrinter.info("\nExpensive prices:");
+        expensivePrices.forEach(show::execute);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

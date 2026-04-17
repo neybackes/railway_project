@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class KeywordCounter {
 
@@ -20,24 +21,18 @@ public class KeywordCounter {
         String[] words = StringUtils.split(text, " ,.!?;:-\n\r\t");
         StringBuilder result = new StringBuilder();
 
-        for (Keyword keyword : Keyword.values()) {
-            int count = 0;
-            String keywordText = keyword.name().toLowerCase();
+        if (words != null) {
+            Arrays.stream(Keyword.values()).forEach(keyword -> {
+                String keywordText = keyword.name().toLowerCase();
+                int count = (int) Arrays.stream(words)
+                        .filter(word -> word.equals(keywordText))
+                        .count();
 
-            if (words != null) {
-                for (String word : words) {
-                    if (word.equals(keywordText)) {
-                        count++;
-                    }
-                }
-            }
-
-            String line = keywordText + ": " + count;
-            logsPrinter.info(line);
-            result.append(line).append("\n");
+                String line = keywordText + ": " + count;
+                logsPrinter.info(line);
+                result.append(line).append("\n");
+            });
         }
-
-
 
         FileUtils.writeStringToFile(outputFile, result.toString(), StandardCharsets.UTF_8, true);
     }

@@ -29,6 +29,7 @@ public final class CargoWagon extends Wagon {
 
     @Override
     public void showInfo() {
+        logsPrinter.title("Wagon Information");
         logsPrinter.info("Cargo Wagon ID: " + wagonId);
         logsPrinter.info("Capacity: " + capacity + " tons");
         logsPrinter.info("Current Load: " + currentLoad + " tons");
@@ -66,13 +67,12 @@ public final class CargoWagon extends Wagon {
             return;
         }
 
-        for (GeneralCargo cargo : cargoList.getAll()) {
-            logsPrinter.info("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)");
-        }
+        cargoList.getAll().forEach(cargo ->
+                logsPrinter.info("- " + cargo.getDescription() + " (" + cargo.getWeight() + " tons)"));
     }
 
     public String getCurrentLoad() {
-        return "Teste" + currentLoad;
+        return "Current Load" + currentLoad;
     }
 
     public void setCurrentLoad(double currentLoad) {

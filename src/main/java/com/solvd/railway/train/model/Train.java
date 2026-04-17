@@ -46,6 +46,7 @@ public final class Train {
     }
 
     public void showInfo() {
+        logsPrinter.title("Train Information");
         logsPrinter.info("Train ID: " + trainId);
         logsPrinter.info("Train Name: " + name);
         logsPrinter.info("Locomotive: " + locomotive.getName());
@@ -118,9 +119,7 @@ public final class Train {
             return;
         }
 
-        for (Wagon wagon : wagons.getAll()) {
-            wagon.showInfo();
-        }
+        wagons.getAll().forEach(Wagon::showInfo);
     }
 
     public void addRecentStation(Station station) {

@@ -89,12 +89,12 @@ public final class RailwayManager extends RailwaySystem {
     public void showStations() {
         if (stations.isEmpty()) {
             logsPrinter.warn("No stations registered.");
+            return;
         }
 
         logsPrinter.info("Stations in " + name + ":");
-        for (Station station : stations.getAll()) {
-            logsPrinter.info("- " + station.getStationName() + " (" + station.getStationCity() + ")");
-        }
+        stations.getAll().forEach(station ->
+                logsPrinter.info("- " + station.getStationName() + " (" + station.getStationCity() + ")"));
     }
 
     @Override
@@ -105,8 +105,7 @@ public final class RailwayManager extends RailwaySystem {
         }
 
         logsPrinter.info("Trains in " + name + ":");
-        for (Train train : trains.getAll()) {
-            logsPrinter.info("- " + train.getName() + " (ID: " + train.getTrainId() + ")");
-        }
+        trains.getAll().forEach(train ->
+                logsPrinter.info("- " + train.getName() + " (ID: " + train.getTrainId() + ")"));
     }
 }
