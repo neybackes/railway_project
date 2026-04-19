@@ -1,7 +1,11 @@
 package com.solvd.railway.station.model;
 
+import com.solvd.railway.annotation.ClassInfo;
+import com.solvd.railway.annotation.MethodInfo;
 import com.solvd.railway.generics.Printer;
 
+
+@ClassInfo("Route")
 public record Route(Station origin, Station destination, double distance) {
 
     private static final Printer<String> logsPrinter = new Printer<>();
@@ -21,6 +25,7 @@ public record Route(Station origin, Station destination, double distance) {
         logsPrinter.info("Distance: " + distance + " km");
     }
 
+    @MethodInfo("IsStationOnRoute")
     public boolean isStationOnRoute(Station station) {
         return station.equals(origin) || station.equals(destination);
     }

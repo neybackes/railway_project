@@ -11,6 +11,7 @@ import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
+import com.solvd.railway.runner.MethodRunner;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.system.model.RailwayManager;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws WagonFullException, InvalidRailwayNameException {
+    public static void main(String[] args) throws Exception {
 
         Printer<String> logsPrinter = new Printer<>();
 
@@ -329,6 +330,9 @@ public class Main {
         logsPrinter.info("\nExpensive prices:");
         expensivePrices.forEach(show::execute);
 
+        MethodRunner.run(Train.class);
+        MethodRunner.run(KeywordCounter.class);
+        MethodRunner.run(Route.class);
 
 
 

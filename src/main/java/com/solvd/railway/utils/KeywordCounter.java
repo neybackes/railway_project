@@ -18,7 +18,7 @@ public class KeywordCounter {
     private static final Printer<String> logsPrinter = new Printer<>();
 
 
-    @MethodInfo("Utils Counter")
+    @MethodInfo("CoUtilsunter")
     public void countKeywords(File inputFile, File outputFile) throws IOException {
         String text = FileUtils.readFileToString(inputFile, StandardCharsets.UTF_8);
         text = StringUtils.lowerCase(text);
