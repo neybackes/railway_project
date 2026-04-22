@@ -49,7 +49,7 @@ public final class Train {
         logsPrinter.title("Train Information");
         logsPrinter.info("Train ID: " + trainId);
         logsPrinter.info("Train Name: " + name);
-        logsPrinter.info("Locomotive: " + locomotive.getName());
+        logsPrinter.info("Locomotive: " + locomotive.name());
         logsPrinter.info("Current Station: " + currentStation.getStationName());
         logsPrinter.info("Number of wagons: " + wagons.size());
     }

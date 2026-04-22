@@ -1,5 +1,7 @@
 package com.solvd.railway.utils;
 
+import com.solvd.railway.annotation.ClassInfo;
+import com.solvd.railway.annotation.MethodInfo;
 import com.solvd.railway.enums.Keyword;
 import com.solvd.railway.generics.Printer;
 import org.apache.commons.io.FileUtils;
@@ -10,10 +12,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+@ClassInfo("Util Counter")
 public class KeywordCounter {
 
     private static final Printer<String> logsPrinter = new Printer<>();
 
+
+    @MethodInfo("CoUtilsunter")
     public void countKeywords(File inputFile, File outputFile) throws IOException {
         String text = FileUtils.readFileToString(inputFile, StandardCharsets.UTF_8);
         text = StringUtils.lowerCase(text);

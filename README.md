@@ -89,6 +89,7 @@ Simple Java study project modeling a railway system.
    - Validate
  - Replace all iterations in project with collection streaming instead ☑
 
+
 ### Java Project Structure Flow
 
 ```text

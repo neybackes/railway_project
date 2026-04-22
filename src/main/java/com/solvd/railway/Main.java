@@ -11,6 +11,7 @@ import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
+import com.solvd.railway.runner.MethodRunner;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.system.model.RailwayManager;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws WagonFullException, InvalidRailwayNameException {
+    public static void main(String[] args) throws Exception {
 
         Printer<String> logsPrinter = new Printer<>();
 
@@ -238,11 +239,11 @@ public class Main {
 
         logsPrinter.title("\n========== GENERICS TEMPORARY ITEMS==========" );
         Holder<Train> trainHolder = new Holder<>(train1);
-        var tempTrain = trainHolder.getItem();
+        var tempTrain = trainHolder.item();
         logsPrinter.info("Temporary train: " + tempTrain.getName());
 
         Holder<Ticket> ticketHolder = new Holder<>(ticket1);
-        var tempTicket = ticketHolder.getItem();
+        var tempTicket = ticketHolder.item();
         logsPrinter.info("Temporary ticket: " + tempTicket.getTicketId());
         tempTicket.setTicketId("3" );
         logsPrinter.warn("Temporary ticket changed to: " + tempTicket.getTicketId());
@@ -260,7 +261,7 @@ public class Main {
         logsPrinter.title("\n========== LogLevel ==========" );
 
         logsPrinter.info("INFORMATION EXAMPLE " + train1.getName());
-        logsPrinter.warn("WARNING EXAMPLE " + trainHolder.getItem());
+        logsPrinter.warn("WARNING EXAMPLE " + trainHolder.item());
         logsPrinter.error("ERROR EXAMPLE " + train1.getName());
 
         logsPrinter.title("\n========== WagonType ==========" );
@@ -328,6 +329,11 @@ public class Main {
 
         logsPrinter.info("\nExpensive prices:");
         expensivePrices.forEach(show::execute);
+
+        MethodRunner.run(Train.class);
+        MethodRunner.run(KeywordCounter.class);
+        MethodRunner.run(Route.class);
+
 
 
 
