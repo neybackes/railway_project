@@ -11,6 +11,7 @@ import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
+import com.solvd.railway.pool.ConnectionPool;
 import com.solvd.railway.runner.MethodRunner;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
@@ -26,6 +27,9 @@ import com.solvd.railway.utils.KeywordCounter;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -350,20 +354,33 @@ public class Main {
         t.start();
 
 
+        logsPrinter.title("\n========== Initialize Pool ==========");
 
+        ConnectionPool pool = ConnectionPool.getInstance();
+        ExecutorService executor = Executors.newFixedThreadPool(7);
 
+        for (int i = 1; i <= 7; i++) {
+            final int id = i;
+            executor.submit(() -> {
+                try {
+                    logsPrinter.info("Task " + id + " waiting...");
+                    ConnectionPool.Connection c = pool.acquireConnection();
+                    logsPrinter.info("Task " + id + " connected");
 
+                    Thread.sleep(1000); // simula uso
 
+                    pool.releaseConnection(c);
+                    logsPrinter.info("Task " + id + " release connection");
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
 
-
-
-
-
-
-
-
-
-
-
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
+        logsPrinter.info("Fim.");
     }
+
+
 }
