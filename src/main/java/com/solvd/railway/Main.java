@@ -15,6 +15,8 @@ import com.solvd.railway.runner.MethodRunner;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.system.model.RailwayManager;
+import com.solvd.railway.threads.WorkerTask;
+import com.solvd.railway.threads.WorkerThread;
 import com.solvd.railway.train.model.Locomotive;
 import com.solvd.railway.train.model.Train;
 import com.solvd.railway.train.model.wagon.model.CargoWagon;
@@ -333,6 +335,21 @@ public class Main {
         MethodRunner.run(Train.class);
         MethodRunner.run(KeywordCounter.class);
         MethodRunner.run(Route.class);
+
+        logsPrinter.title("\n========== Threads ==========");
+
+        WorkerThread Worker1 = new WorkerThread("Worker-1");
+        WorkerThread Worker2 = new WorkerThread("Worker-2");
+
+        Worker2.start();
+        Thread.sleep(700);
+        Worker2.interrupt();
+
+        Runnable task = new WorkerTask();
+        Thread t = new Thread(task, "Worker-1");
+        t.start();
+
+
 
 
 
