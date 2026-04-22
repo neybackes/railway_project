@@ -89,6 +89,17 @@ Simple Java study project modeling a railway system.
    - Validate
  - Replace all iterations in project with collection streaming instead ☑
 
+## Annotations, Reflection, Record and Runner
+  - Classes change into records:
+    - Generic Holder int Records
+    - Locomotive class int Records
+    - Class Route into record
+  - Annotation
+    - ClassInfo
+    - MethoInfo
+  - Reflection
+    - MethodRunner
+
 ### Java Project Structure Flow
 
 ```text
