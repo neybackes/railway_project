@@ -11,10 +11,13 @@ import com.solvd.railway.generics.Holder;
 import com.solvd.railway.generics.Printer;
 import com.solvd.railway.passenger.document.model.Ticket;
 import com.solvd.railway.passenger.person.model.Passenger;
+import com.solvd.railway.pool.ConnectionPool;
 import com.solvd.railway.runner.MethodRunner;
 import com.solvd.railway.station.model.Route;
 import com.solvd.railway.station.model.Station;
 import com.solvd.railway.system.model.RailwayManager;
+import com.solvd.railway.threads.WorkerTask;
+import com.solvd.railway.threads.WorkerThread;
 import com.solvd.railway.train.model.Locomotive;
 import com.solvd.railway.train.model.Train;
 import com.solvd.railway.train.model.wagon.model.CargoWagon;
@@ -23,7 +26,12 @@ import com.solvd.railway.utils.KeywordCounter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -334,19 +342,79 @@ public class Main {
         MethodRunner.run(KeywordCounter.class);
         MethodRunner.run(Route.class);
 
+        logsPrinter.title("\n========== Threads ==========");
+
+        WorkerThread workerThread = new WorkerThread("ExtendsThread-Worker");
+        Runnable task = new WorkerTask();
+        Thread runnableThread = new Thread(task, "RunnableThread-Worker");
+
+        workerThread.start();
+        runnableThread.start();
+        workerThread.join();
+        runnableThread.join();
 
 
+        logsPrinter.title("\n========== Initialize Pool ==========");
 
+        ConnectionPool pool = ConnectionPool.getInstance();
+        ExecutorService executor = Executors.newFixedThreadPool(7);
 
+        for (int i = 1; i <= 7; i++) {
+            final int id = i;
+            executor.submit(() -> {
+                ConnectionPool.Connection connection = null;
+                try {
+                    logsPrinter.info("Task " + id + " waiting...");
+                    connection = pool.acquireConnection();
+                    logsPrinter.info("Task " + id + " connected");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logsPrinter.error("Task " + id + " interrupted");
+                } finally {
+                    if (connection != null) {
+                        pool.releaseConnection(connection);
+                        logsPrinter.info("Task " + id + " released connection");
+                    }
+                }
+            });
+        }
 
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
 
+        logsPrinter.title("\n========== Initialize Pool with CompletableFuture ==========");
 
+        ExecutorService completableExecutor = Executors.newFixedThreadPool(7);
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
 
+        for (int i = 1; i <= 7; i++) {
+            final int id = i;
+            CompletableFuture<Void> flow = CompletableFuture
+                    .supplyAsync(() -> {
+                        try {
+                            logsPrinter.info("CF Task " + id + " waiting...");
+                            ConnectionPool.Connection connection = pool.acquireConnection();
+                            logsPrinter.info("CF Task " + id + " connected");
+                            Thread.sleep(1000);
+                            return connection;
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new IllegalStateException("CF Task " + id + " interrupted", e);
+                        }
+                    }, completableExecutor)
+                    .thenAccept(connection -> {
+                        pool.releaseConnection(connection);
+                        logsPrinter.info("CF Task " + id + " released connection");
+                    });
+            futures.add(flow);
+        }
 
-
-
-
-
-
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        completableExecutor.shutdown();
+        completableExecutor.awaitTermination(1, TimeUnit.MINUTES);
+        logsPrinter.info("End.");
     }
+
+
 }
