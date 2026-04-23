@@ -26,7 +26,9 @@ import com.solvd.railway.utils.KeywordCounter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -342,16 +344,14 @@ public class Main {
 
         logsPrinter.title("\n========== Threads ==========");
 
-        WorkerThread Worker1 = new WorkerThread("Worker-1");
-        WorkerThread Worker2 = new WorkerThread("Worker-2");
-
-        Worker2.start();
-        Thread.sleep(700);
-        Worker2.interrupt();
-
+        WorkerThread workerThread = new WorkerThread("ExtendsThread-Worker");
         Runnable task = new WorkerTask();
-        Thread t = new Thread(task, "Worker-1");
-        t.start();
+        Thread runnableThread = new Thread(task, "RunnableThread-Worker");
+
+        workerThread.start();
+        runnableThread.start();
+        workerThread.join();
+        runnableThread.join();
 
 
         logsPrinter.title("\n========== Initialize Pool ==========");
@@ -362,24 +362,58 @@ public class Main {
         for (int i = 1; i <= 7; i++) {
             final int id = i;
             executor.submit(() -> {
+                ConnectionPool.Connection connection = null;
                 try {
                     logsPrinter.info("Task " + id + " waiting...");
-                    ConnectionPool.Connection c = pool.acquireConnection();
+                    connection = pool.acquireConnection();
                     logsPrinter.info("Task " + id + " connected");
-
-                    Thread.sleep(1000); // simula uso
-
-                    pool.releaseConnection(c);
-                    logsPrinter.info("Task " + id + " release connection");
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
+                    logsPrinter.error("Task " + id + " interrupted");
+                } finally {
+                    if (connection != null) {
+                        pool.releaseConnection(connection);
+                        logsPrinter.info("Task " + id + " released connection");
+                    }
                 }
             });
         }
 
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
-        logsPrinter.info("Fim.");
+
+        logsPrinter.title("\n========== Initialize Pool with CompletableFuture ==========");
+
+        ExecutorService completableExecutor = Executors.newFixedThreadPool(7);
+        List<CompletableFuture<Void>> futures = new ArrayList<>();
+
+        for (int i = 1; i <= 7; i++) {
+            final int id = i;
+            CompletableFuture<Void> flow = CompletableFuture
+                    .supplyAsync(() -> {
+                        try {
+                            logsPrinter.info("CF Task " + id + " waiting...");
+                            ConnectionPool.Connection connection = pool.acquireConnection();
+                            logsPrinter.info("CF Task " + id + " connected");
+                            Thread.sleep(1000);
+                            return connection;
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new IllegalStateException("CF Task " + id + " interrupted", e);
+                        }
+                    }, completableExecutor)
+                    .thenAccept(connection -> {
+                        pool.releaseConnection(connection);
+                        logsPrinter.info("CF Task " + id + " released connection");
+                    });
+            futures.add(flow);
+        }
+
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+        completableExecutor.shutdown();
+        completableExecutor.awaitTermination(1, TimeUnit.MINUTES);
+        logsPrinter.info("End.");
     }
 
 
