@@ -100,6 +100,15 @@ Simple Java study project modeling a railway system.
   - Reflection
     - MethodRunner
 
+## Threads. Connection Pool. Future and CompletionStage interfaces. Multithreading.
+  - Create 2 threads
+    - WorkerThread - Extends Thread
+    - WorkerTask - Implements 
+  - Create a Connection Pool
+    - ConnectionPool
+  - Initialize the pool with size 5 ☑
+  - Implement part 4 again using Future / CompletionStage
+
 ### Java Project Structure Flow
 
 ```text
